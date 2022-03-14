@@ -1,8 +1,11 @@
-import Home from "./pages/home/Home";
+
+
+import Products from "./pages/products/Products";
 function App() {
+  
   return (
     <div className="App">
-      <Home/>
+      <Products/>
     </div>
   );
 }
