@@ -9,16 +9,16 @@ const Login = () => {
                 <div className="login-form-container bg-white ">
                     <h2 className="centered-text grey">Login</h2>
                     <form action="" className="login-form">
-                        <label for="email">Email address 
+                        <label htmlFor="email">Email address 
                             <br/> <input id="email" name="email" type="email" placeholder="abc@neog.com"/>
                         </label>
                         
-                        <label for="password">Password
+                        <label htmlFor="password">Password
                             <br/> <input type="password" value="12345678"/>
                         </label>
                         
                         <div className="remember-me-container">
-                            <label for="remember-me"><input id="remember-me" type="checkbox"/> Remember me</label>
+                            <label htmlFor="remember-me"><input id="remember-me" type="checkbox"/> Remember me</label>
                             <span><a href="">Forgot Your Password?</a></span>
                         </div>
                         <button className="btn btn-primary">Login</button>
