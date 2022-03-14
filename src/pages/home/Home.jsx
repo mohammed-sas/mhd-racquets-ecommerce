@@ -4,6 +4,7 @@ import heroImage from '../../assets/racquets-hero.webp';
 import shoeImage from '../../assets/shoe.webp';
 import racquet1 from '../../assets/rq-1.webp';
 import racquet2 from '../../assets/rq-2.webp';
+import racquet3 from '../../assets/rq-3.webp';
 import stringImage from '../../assets/string.webp';
 import shuttle from '../../assets/shuttle.webp';
 
@@ -23,7 +24,7 @@ const Home = () => {
                 <h2 className="centered-text grey">Featured Categories</h2>
                 <div className="featured-categories">
                     <div className="featured-item">
-                        <img src="../Images/rq-3.png" alt="racquet"/>
+                        <img src={racquet3} alt="racquet"/>
                         <h3>Racquets</h3>
                     </div>
                     <div className="featured-item">
