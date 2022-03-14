@@ -4,7 +4,7 @@ import Products from "./pages/products/Products";
 function App() {
   
   return (
-    <div className="App">
+    <div>
       <Products/>
     </div>
   );

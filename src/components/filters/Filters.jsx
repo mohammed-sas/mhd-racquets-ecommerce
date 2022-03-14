@@ -1,6 +1,8 @@
 
+import { useFilter } from '../../context/filter-context';
 import './filters.css';
 const Filters = () => {
+    const {state,filterDispatch} = useFilter();
     return (
 <aside>
                 <div className="display-flex">
@@ -16,15 +18,15 @@ const Filters = () => {
                     </div>
                     <div className="range-wrap">
                         <input type="range" min="0" name='slider' id='slider' className="range" max="100"/>
-                        <output htmlFor='slider' className="bubble" onforminput="value=slider.valueAsNumber;">5000</output>
+                        <output htmlFor='slider' className="bubble">5000</output>
                     </div>
                 </div>
                 <div className="category filter-flex-y ">
                     <h3>Category</h3>
-                    <label htmlFor="racquets"><input name="racquets" type="checkbox"/> Racquets</label>
-                    <label htmlFor="shuttlecock"><input name="shuttlecock" type="checkbox"/> Shuttlecock</label>
-                    <label htmlFor="string"><input name="string" type="checkbox"/> String</label>
-                    <label htmlFor="shoe"><input name="shoe" type="checkbox"/> Shoe</label>
+                    <label htmlFor="racquets"><input name="racquets" checked={state.showRacquet} onChange={(e)=>filterDispatch({type:"CATEGORIES",payload:"Racquet",isSelected:e.target.checked})} type="checkbox"/> Racquets</label>
+                    <label htmlFor="shuttlecock"><input name="shuttlecock" checked={state.showShuttleCock} onChange={(e)=>filterDispatch({type:"CATEGORIES",payload:"ShuttleCock",isSelected:e.target.checked})} type="checkbox"/> Shuttlecock</label>
+                    <label htmlFor="string"><input name="string" checked={state.showString} onChange={(e)=>filterDispatch({type:"CATEGORIES",payload:"String",isSelected:e.target.checked})} type="checkbox"/> String</label>
+                    <label htmlFor="shoe"><input name="shoe" checked={state.showShoe} onChange={(e)=>filterDispatch({type:"CATEGORIES",payload:"Shoe",isSelected:e.target.checked})} type="checkbox"/> Shoe</label>
                 </div>
                 <div className="rating filter-flex-y">
                     <h3>Rating</h3>
@@ -35,8 +37,8 @@ const Filters = () => {
                 </div>
                 <div className="sort-by filter-flex-y">
                     <h3>Sort by</h3>
-                    <label htmlFor="low-high"><input name="low-high" type="radio"/> Prices - Low to High</label>
-                    <label htmlFor="high-low"><input name="high-low" type="radio"/> Prices - High to Low</label>
+                    <label htmlFor="low-high"><input name="price-sort" checked={state.lowToHigh} onChange={()=>filterDispatch({type:"LOW_TO_HIGH"})} type="radio"/> Prices - Low to High</label>
+                    <label htmlFor="high-low"><input name="price-sort" checked={state.highToLow} onChange={()=>filterDispatch({type:"HIGH_TO_LOW"})} type="radio"/> Prices - High to Low</label>
                 </div>
             </aside>
             

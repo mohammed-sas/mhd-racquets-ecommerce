@@ -1,34 +1,33 @@
 import Navbar from '../../components/Navbar/Navbar';
 import Filters from '../../components/filters/Filters';
-import axios from "axios";
-import { useEffect, useState } from "react";
+import {  getFastDelivered,getLowToHigh,getHighToLow,getInStock,getMaxPrice,getCategoryWise} from '../../utils/util';
+
 import './products.css';
+import { useFilter } from '../../context/filter-context';
 
 const Products = () => {
-    const [products,setProducts] = useState([]);
+    const {state} = useFilter();
+   
+    const { items, lowToHigh, highToLow,categories } = state;
+   
+    let filteredItems = lowToHigh ? getLowToHigh(items) : items;
+    filteredItems = highToLow ? getHighToLow(items) : items;
+    filteredItems=getCategoryWise(filteredItems,categories)
 
-  useEffect(()=>{
-
-    const fetchProducts=async ()=>{
-      const response = await axios.get('/api/products');
-      setProducts(response.data.products);
-
-    }
-    fetchProducts();
-
-  },[]);
-  
     return (
         <div className="product-page-container">
             <Navbar/>
             <Filters/>
             <main>
                 {
-                    products.map(product=>{
-                        return (<div className="card-container product-container">
+                    state.loading ? <h2>Loading...</h2>:null
+                }
+                {
+                    filteredItems.map(product=>{
+                        return (<div key={product.id} className="card-container product-container">
                         <div className="card-image-basic product-image relative-pos">
                             <img src={product.image} alt="astrox 100 game" />
-                            <span className="btn-dismiss"><i className="fas fa-heart wishlist-active"></i></span>
+                            <span className="btn-dismiss"><i className="fas fa-heart "></i></span>
                         </div>
                         <div className="card-heading bg-purple-50">
                             <div className="padding-l-r-16-b-5 heading bg-purple-50">{product.title}</div>

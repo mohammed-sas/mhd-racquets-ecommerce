@@ -31,7 +31,7 @@ export const products = [
     brand: "Yonex",
     price: "5699",
     image:nf555,
-    categoryName: "racquet",
+    categoryName: "Racquet",
   },
   {
     _id: uuid(),
@@ -39,7 +39,7 @@ export const products = [
     brand: "Yonex",
     price: "2190",
     image:nf001,
-    categoryName: "racquet",
+    categoryName: "Racquet",
   },
   {
     _id: uuid(),
@@ -47,7 +47,7 @@ export const products = [
     brand: "Yonex",
     price: "11,599",
     image:nf700,
-    categoryName: "racquet",
+    categoryName: "Racquet",
   },
   {
     _id: uuid(),
@@ -55,7 +55,7 @@ export const products = [
     brand: "Yonex",
     price: "13,250",
     image:astrox100,
-    categoryName: "racquet",
+    categoryName: "Racquet",
   },
   {
     _id: uuid(),
@@ -63,7 +63,7 @@ export const products = [
     brand: "Yonex",
     price: "10,199",
     image:astrox99,
-    categoryName: "racquet",
+    categoryName: "Racquet",
   },
   {
     _id: uuid(),
@@ -71,7 +71,7 @@ export const products = [
     brand: "Yonex",
     price: "4,199",
     image:astrox3dg,
-    categoryName: "racquet",
+    categoryName: "Racquet",
   },
   {
     _id: uuid(),
@@ -79,7 +79,7 @@ export const products = [
     brand: "Yonex",
     price: "8,889",
     image:arc11,
-    categoryName: "racquet",
+    categoryName: "Racquet",
   },
   {
     _id: uuid(),
@@ -87,7 +87,7 @@ export const products = [
     brand: "Yonex",
     price: "1,999",
     image:voltric,
-    categoryName: "racquet",
+    categoryName: "Racquet",
   },
   {
     _id: uuid(),
@@ -95,7 +95,7 @@ export const products = [
     brand: "Yonex",
     price: "3,730",
     image:aerosensa50,
-    categoryName: "shuttle-cock",
+    categoryName: "ShuttleCock",
   },
   {
     _id: uuid(),
@@ -103,7 +103,7 @@ export const products = [
     brand: "Yonex",
     price: "1,250",
     image:aeroclub33,
-    categoryName: "shuttle-cock",
+    categoryName: "ShuttleCock",
   },
   {
     _id: uuid(),
@@ -111,7 +111,7 @@ export const products = [
     brand: "Yonex",
     price: "2,599",
     image:mavis2000,
-    categoryName: "shuttle-cock",
+    categoryName: "ShuttleCock",
   },
   {
     _id: uuid(),
@@ -119,7 +119,7 @@ export const products = [
     brand: "Yonex",
     price: "999",
     image:mavis350,
-    categoryName: "shuttle-cock",
+    categoryName: "ShuttleCock",
   },
   {
     _id: uuid(),
@@ -127,7 +127,7 @@ export const products = [
     brand: "Yonex",
     price: "975",
     image:aerobiteBoost,
-    categoryName: "string",
+    categoryName: "String",
   },
   {
     _id: uuid(),
@@ -135,7 +135,7 @@ export const products = [
     brand: "Yonex",
     price: "780",
     image:aerobite,
-    categoryName: "string",
+    categoryName: "String",
   },
   {
     _id: uuid(),
@@ -143,7 +143,7 @@ export const products = [
     brand: "Yonex",
     price: "555",
     image:bg80,
-    categoryName: "string",
+    categoryName: "String",
   },
   {
     _id: uuid(),
@@ -151,16 +151,16 @@ export const products = [
     brand: "Yonex",
     price: "950",
     image:skyark,
-    categoryName: "string",
+    categoryName: "String",
   }
   ,
   {
     _id: uuid(),
-    title: "Power Cushion 65X",
+    title: "Power Cushion 65",
     brand: "Yonex",
     price: "10,999",
     image:pc65,
-    categoryName: "shoe",
+    categoryName: "Shoe",
   },
   {
     _id: uuid(),
@@ -168,7 +168,7 @@ export const products = [
     brand: "Yonex",
     price: "2,999",
     image:pc37,
-    categoryName: "shoe",
+    categoryName: "Shoe",
   },
   {
     _id: uuid(),
@@ -176,7 +176,7 @@ export const products = [
     brand: "Yonex",
     price: "10,999",
     image:eclipsion,
-    categoryName: "shoe",
+    categoryName: "Shoe",
   },
   {
     _id: uuid(),
@@ -184,6 +184,6 @@ export const products = [
     brand: "Yonex",
     price: "8,999",
     image:pcAero,
-    categoryName: "shoe",
+    categoryName: "Shoe",
   }
 ];
