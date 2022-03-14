@@ -1,6 +1,7 @@
 import Navbar from '../../components/Navbar/Navbar';
 import Filters from '../../components/filters/Filters';
-import {  getFastDelivered,getLowToHigh,getHighToLow,getInStock,getMaxPrice,getCategoryWise} from '../../utils/util';
+import Rating from '../../components/rating/Rating'
+import {  getRatings,getLowToHigh,getHighToLow,getMaxPrice,getCategoryWise} from '../../utils/util';
 
 import './products.css';
 import { useFilter } from '../../context/filter-context';
@@ -8,11 +9,13 @@ import { useFilter } from '../../context/filter-context';
 const Products = () => {
     const {state} = useFilter();
    
-    const { items, lowToHigh, highToLow,categories } = state;
+    const { items, lowToHigh, highToLow,categories,maxPrice,rating } = state;
    
     let filteredItems = lowToHigh ? getLowToHigh(items) : items;
     filteredItems = highToLow ? getHighToLow(items) : items;
-    filteredItems=getCategoryWise(filteredItems,categories)
+    filteredItems=getCategoryWise(filteredItems,categories);
+    filteredItems=getMaxPrice(filteredItems,maxPrice);
+    filteredItems=getRatings(filteredItems,rating);
 
     return (
         <div className="product-page-container">
@@ -34,6 +37,7 @@ const Products = () => {
                             <div className="padding-l-r-16-b-5 sub-heading bg-purple-50">{product.brand}
                             </div>
                         </div>
+                        <Rating rating={product.rating}/>
                         <div className="product-price padding-l-r-16-b-5  bg-purple-50">
                             <h2>₹{product.price}</h2>
                         </div>

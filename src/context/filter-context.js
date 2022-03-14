@@ -18,7 +18,7 @@ const FilterProvider =({children})=>{
             ...state,
             loading:false,
             items:action.data,
-            data:action.data
+            data:action.data,
         };
     case "CATEGORIES":
         if(action.isSelected){
@@ -37,13 +37,9 @@ const FilterProvider =({children})=>{
       case "PRICE_RANGE":
         return {
           ...state,
-          maxPrice: Number(action.range),
+          maxPrice: Number(action.payload),
         };
-      case "OUT_OF_STOCK":
-        return {
-          ...state,
-          outOfStock: action.outOfStock
-        };
+      
       case "HIGH_TO_LOW":
         return {
           ...state,
@@ -57,20 +53,25 @@ const FilterProvider =({children})=>{
           highToLow: false,
         };
 
-      case "FAST_DELIVERY":
-        return {
-          ...state,
-          isFast: action.isFast,
-        };
+      case "RATING":
+          return{
+              ...state,
+              rating:action.payload
+          }
 
       case "CLEAR_FILTER":
         return {
-          ...state,
-          items: [...state.data],
-          outOfStock: false,
-          highToLow: false,
-          lowToHigh: false,
-          isFast: false
+          ...state, 
+        items:[...state.data],  
+        lowToHigh: false,
+        highToLow: false,
+        categories:[],
+        showRacquet:false,
+        showShuttleCock:false,
+        showString:false,
+        showShoe:false,
+        maxPrice: 14000,
+        rating:0,      
         };
 
       default:
@@ -82,18 +83,16 @@ const FilterProvider =({children})=>{
     const [state,filterDispatch] = useReducer(filterReducer,{
         items: [],
         data:[],
-        loading:true,
-        isFast: false,
-        inStock: true,
+        loading:true,    
         lowToHigh: false,
         highToLow: false,
-        outOfStock: false,
         categories:[],
         showRacquet:false,
         showShuttleCock:false,
         showString:false,
         showShoe:false,
-        maxPrice: 100000
+        maxPrice: 14000,
+        rating:0,
       })
 
     useEffect(()=>{

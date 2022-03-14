@@ -30,6 +30,7 @@ export const products = [
     title: "Nanoflare 555",
     brand: "Yonex",
     price: "5699",
+    rating:3,
     image:nf555,
     categoryName: "Racquet",
   },
@@ -38,6 +39,7 @@ export const products = [
     title: "Nanoflare 001",
     brand: "Yonex",
     price: "2190",
+    rating:4,
     image:nf001,
     categoryName: "Racquet",
   },
@@ -47,6 +49,7 @@ export const products = [
     brand: "Yonex",
     price: "11,599",
     image:nf700,
+    rating:5,
     categoryName: "Racquet",
   },
   {
@@ -55,6 +58,7 @@ export const products = [
     brand: "Yonex",
     price: "13,250",
     image:astrox100,
+    rating:4,
     categoryName: "Racquet",
   },
   {
@@ -63,6 +67,7 @@ export const products = [
     brand: "Yonex",
     price: "10,199",
     image:astrox99,
+    rating:3,
     categoryName: "Racquet",
   },
   {
@@ -71,6 +76,7 @@ export const products = [
     brand: "Yonex",
     price: "4,199",
     image:astrox3dg,
+    rating:3,
     categoryName: "Racquet",
   },
   {
@@ -79,6 +85,7 @@ export const products = [
     brand: "Yonex",
     price: "8,889",
     image:arc11,
+    rating:5,
     categoryName: "Racquet",
   },
   {
@@ -87,6 +94,7 @@ export const products = [
     brand: "Yonex",
     price: "1,999",
     image:voltric,
+    rating:2,
     categoryName: "Racquet",
   },
   {
@@ -95,6 +103,7 @@ export const products = [
     brand: "Yonex",
     price: "3,730",
     image:aerosensa50,
+    rating:5,
     categoryName: "ShuttleCock",
   },
   {
@@ -103,6 +112,7 @@ export const products = [
     brand: "Yonex",
     price: "1,250",
     image:aeroclub33,
+    rating:3,
     categoryName: "ShuttleCock",
   },
   {
@@ -110,6 +120,7 @@ export const products = [
     title: "Mavis 2000",
     brand: "Yonex",
     price: "2,599",
+    rating:4,
     image:mavis2000,
     categoryName: "ShuttleCock",
   },
@@ -118,6 +129,7 @@ export const products = [
     title: "Mavis 350",
     brand: "Yonex",
     price: "999",
+    rating:4,
     image:mavis350,
     categoryName: "ShuttleCock",
   },
@@ -126,6 +138,7 @@ export const products = [
     title: "Aerobite Boost",
     brand: "Yonex",
     price: "975",
+    rating:3,
     image:aerobiteBoost,
     categoryName: "String",
   },
@@ -134,6 +147,7 @@ export const products = [
     title: "Aerobite Boost",
     brand: "Yonex",
     price: "780",
+    rating:2,
     image:aerobite,
     categoryName: "String",
   },
@@ -143,6 +157,7 @@ export const products = [
     brand: "Yonex",
     price: "555",
     image:bg80,
+    rating:4,
     categoryName: "String",
   },
   {
@@ -151,6 +166,7 @@ export const products = [
     brand: "Yonex",
     price: "950",
     image:skyark,
+    rating:5,
     categoryName: "String",
   }
   ,
@@ -160,6 +176,7 @@ export const products = [
     brand: "Yonex",
     price: "10,999",
     image:pc65,
+    rating:5,
     categoryName: "Shoe",
   },
   {
@@ -168,6 +185,7 @@ export const products = [
     brand: "Yonex",
     price: "2,999",
     image:pc37,
+    rating:2,
     categoryName: "Shoe",
   },
   {
@@ -176,6 +194,7 @@ export const products = [
     brand: "Yonex",
     price: "10,999",
     image:eclipsion,
+    rating:4,
     categoryName: "Shoe",
   },
   {
@@ -184,6 +203,7 @@ export const products = [
     brand: "Yonex",
     price: "8,999",
     image:pcAero,
+    rating:5,
     categoryName: "Shoe",
   }
 ];
