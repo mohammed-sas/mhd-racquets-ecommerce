@@ -1,6 +1,6 @@
 import Navbar from "../../components/Navbar/Navbar"
 import './login.css'
-
+import { Link } from "react-router-dom"
 const Login = () => {
     return (
         <div>
@@ -23,7 +23,7 @@ const Login = () => {
                         </div>
                         <button className="btn btn-primary">Login</button>
                         <div>
-                            <p className="centered-text"><a href="../Signup Page/signup.html">Create New Account <i className="fas fa-chevron-right"></i></a></p>
+                            <p className="centered-text"><Link to="/signup">Create New Account <i className="fas fa-chevron-right"></i></Link></p>
                         </div>
                     </form>
                 </div>

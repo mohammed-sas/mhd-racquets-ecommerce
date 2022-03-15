@@ -1,6 +1,10 @@
 import './navbar.css'
 import logo from '../../assets/ecomm-logo.png';
+import { useNavigate } from 'react-router';
+import {useAuth} from '../../context/auth-context'
 const Navbar = () => {
+    const navigate = useNavigate();
+    const {currentUser} =useAuth();
     return (
         <nav className="nav-bar bg-white">
             <div className="hamburger-icon">
@@ -19,7 +23,7 @@ const Navbar = () => {
             </div>
             <div className="nav-links">
             <ul>
-                <li><button className="btn btn-primary">Login</button></li>
+                <li>{currentUser? `${currentUser.fname}`:<button className="btn btn-primary" onClick={()=>navigate("/login")}>Login</button>}</li>
                 <li>
                     <div className="badge">
                         <i className="far fa-heart grey bg-none"></i>
