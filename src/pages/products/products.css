@@ -25,15 +25,20 @@ nav{
 
 aside{
     grid-area: aside;
+    overflow-y: scroll;
+    height: 100%;
 }
 
 main{
     grid-area:main;
     overflow-y:scroll;
-    height: 85%;
+    height: 100%;
     display: flex;
     justify-content: space-around;
     flex-flow: row wrap;
     gap: 2rem;
     padding: 1rem;
+}
+i{
+    color:var(--gray-70)
 }
