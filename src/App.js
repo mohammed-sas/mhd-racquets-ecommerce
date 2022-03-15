@@ -1,11 +1,11 @@
+import Signup from "./pages/signup/Signup";
 
 
-import Products from "./pages/products/Products";
 function App() {
   
   return (
     <div>
-      <Products/>
+      <Signup/>
     </div>
   );
 }
