@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router';
 import {useAuth} from '../../context/auth-context'
 const Navbar = () => {
     const navigate = useNavigate();
-    const {currentUser} =useAuth();
+    const {currentUser,signout} =useAuth();
     return (
         <nav className="nav-bar bg-white">
             <div className="hamburger-icon">
@@ -39,6 +39,9 @@ const Navbar = () => {
                         <p className="bg-none grey">Cart</p>
                     </div>
                 </li>
+                {
+                    currentUser? <li><button className="btn btn-secondary" onClick={signout}>Logout</button></li>: null
+                }
             </ul>
             </div>
         

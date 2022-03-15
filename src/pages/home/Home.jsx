@@ -28,15 +28,15 @@ const Home = () => {
                         <h3>Racquets</h3>
                     </div>
                     <div className="featured-item">
-                        <img src={shuttle} alt="shuttle" srcset=""/>
+                        <img src={shuttle} alt="shuttle"/>
                         <h3>Shuttlecock</h3>
                     </div>
                     <div className="featured-item">
-                        <img src={stringImage} alt="string" srcset=""/>
+                        <img src={stringImage} alt="string"/>
                         <h3>String</h3>
                     </div>
                     <div className="featured-item">
-                        <img src={shoeImage} alt="shoe" srcset=""/>
+                        <img src={shoeImage} alt="shoe" />
                         <h3>Shoe</h3>
                     </div>
                 </div>
