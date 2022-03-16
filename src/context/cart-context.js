@@ -11,11 +11,8 @@ const useCart=()=>useContext(CartContext);
 const useCartProvider=()=>{
     let token = localStorage.getItem("token");
     const addToCart=async (product)=>{
-            let data={
-                product
-            }
             try{
-                let response = await axios.post('/api/user/cart',JSON.stringify(data),{headers:{
+                let response = await axios.post('/api/user/cart',{product},{headers:{
                     authorization : token
                 }});
                 
