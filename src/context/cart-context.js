@@ -16,7 +16,7 @@ const useCartProvider=()=>{
                     authorization : token
                 }});
                 
-                
+                return response.status;
             }catch(error){
                 console.log(error);
             }
@@ -26,7 +26,7 @@ const useCartProvider=()=>{
             let response = await axios.get('/api/user/cart',{headers:{
                 authorization : token
             }})
-            console.log(response.data.cart);
+            return response;
         }catch(error){
             console.log(error)
         }

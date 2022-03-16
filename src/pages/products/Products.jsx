@@ -33,7 +33,10 @@ const Products = () => {
       if (!currentUser) {
         navigate("/login");
       } else {
-          let response = await addToCart(product);
+          let status = await addToCart(product);
+          if(status === 201){
+              navigate("/cart");
+          }
       }
     } catch (error) {
       console.log(error);

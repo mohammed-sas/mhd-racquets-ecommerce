@@ -1,57 +1,79 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import { useCart } from "../../context/cart-context";
-import './cart.css';
+import classes from "./cart.module.css";
 const Cart = () => {
-
-    const {getCart} = useCart();
-    useEffect(()=>{
-
-        getCart();
-    },[])
+  const [cartList, setCartList] = useState([]);
+  const [totalPrice,setTotalPrice] = useState(0);
+  const { getCart } = useCart();
+  useEffect(() => {
+    const populateCart = async () => {
+      try {
+        let response = await getCart();
+        setCartList(response.data.cart);
+        let total = response.data.cart.reduce((acc,curr)=>acc+parseInt(curr.price.replace(/,/g,'')),0);
+        setTotalPrice(total);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    populateCart();
+  }, []);
   return (
     <div>
       <Navbar />
-      <main>
+      <div className={classes["main-cart"]}>
         <h2 className="centered-text grey">My Cart</h2>
-        <div className="cart-container">
-          <div className="card-container product-container product-landscape-container">
-            <div className="card-image-basic product-landscape-image relative-pos">
-              <img src="../Images/astrox100game.png" alt="astrox 100 game" />
-            </div>
-            <div className="product-landscape-body  bg-purple-50">
-              <div className="card-heading bg-purple-50">
-                <div className="padding-l-r-16-b-5 heading bg-purple-50">
-                  Astrox 100 Game
+        <div className={classes['cart-container']}>
+          <ul className={classes["cart-list"]}>
+            {cartList.map((product) => {
+              return (
+                  <li>
+                <div
+                  key={product.id}
+                  className="card-container product-container product-landscape-container"
+                >
+                  <div className="card-image-basic product-landscape-image relative-pos">
+                    <img src={product.image} alt={product.title} />
+                  </div>
+                  <div className="product-landscape-body  bg-purple-50">
+                    <div className="card-heading bg-purple-50">
+                      <div className="padding-l-r-16-b-5 heading bg-purple-50">
+                        {product.title}
+                      </div>
+                      <div className="padding-l-r-16-b-5 sub-heading bg-purple-50">
+                        {product.brand}
+                      </div>
+                    </div>
+                    <div className="product-price padding-l-r-16-b-5  bg-purple-50">
+                      <h2>₹{product.price}</h2>
+                    </div>
+                    <div className="product-quantity">
+                      <label htmlFor="quantity">
+                        Quantity:
+                        <button className="btn-qty">-</button>
+                        <input id={classes["qty-input"]} type="number" placeholder="1" />
+                        <button className="btn-qty">+</button>
+                      </label>
+                    </div>
+                    <div className="card-footer-basic product-card-footer fluid-y bg-purple-50">
+                      <button className="btn btn-secondary">
+                        Remove from cart
+                      </button>
+                    </div>
+                  </div>
                 </div>
-                <div className="padding-l-r-16-b-5 sub-heading bg-purple-50">
-                  by Yonex
-                </div>
-              </div>
-              <div className="product-price padding-l-r-16-b-5  bg-purple-50">
-                <h2>₹5,799</h2>
-              </div>
-              <div className="product-quantity">
-                <label htmlFor="quantity">
-                  Quantity:
-                  <button className="btn-qty">-</button>
-                  <input id="qty-input" type="number" value="1" />
-                  <button className="btn-qty">+</button>
-                </label>
-              </div>
-              <div className="card-footer-basic product-card-footer fluid-y bg-purple-50">
-                <button className="btn btn-primary">Add to Cart</button>
-                <button className="btn btn-secondary">Save to Wishlist</button>
-              </div>
-            </div>
-          </div>
-          <div className="cart-summary-container">
+                </li>
+              );
+            })}
+          </ul>
+          <div className={classes["cart-summary-container"]}>
             <h2>Price Details</h2>
             <hr />
-            <div className="total-summary">
+            <div className={classes["total-summary"]}>
               <div>
-                <span>Price (1 item)</span>
-                <span>₹5,799</span>
+                <span>Price ({cartList.length} item)</span>
+                <span>₹{totalPrice}</span>
               </div>
               <div>
                 <span>Discount</span>
@@ -64,7 +86,7 @@ const Cart = () => {
               <hr />
               <div>
                 <h2>Total Amount</h2>
-                <h2>₹6098</h2>
+                <h2>₹{totalPrice+299}</h2>
               </div>
             </div>
 
@@ -72,7 +94,7 @@ const Cart = () => {
             <button class="btn btn-primary">Place Order</button>
           </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 };
