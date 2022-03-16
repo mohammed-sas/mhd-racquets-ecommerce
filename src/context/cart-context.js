@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 
 
@@ -31,15 +31,28 @@ const useCartProvider=()=>{
             console.log(error)
         }
     }
-
-    return {addToCart,getCart};
+    const removeFromCart=async (productId)=>{
+        
+        try{
+            let response = await axios.delete(`/api/user/cart/${productId}`,{headers:{
+                authorization : token
+            }});
+            return response;
+        }catch(error){
+            console.log(error)
+        }
+    }
+    
+    return {addToCart,getCart,removeFromCart};
 }
 
 const CartContext = createContext(null);
-        let value = useCartProvider();
-
+       
+        
 const CartProvider=({children})=>{
-
+    let value= useCartProvider();
+    
+       
     return(
         <CartContext.Provider value={value}>{children}</CartContext.Provider>
     )

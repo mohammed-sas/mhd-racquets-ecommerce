@@ -1,36 +1,58 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import {  useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import { useCart } from "../../context/cart-context";
 import classes from "./cart.module.css";
 const Cart = () => {
   const [cartList, setCartList] = useState([]);
   const [totalPrice,setTotalPrice] = useState(0);
-  const { getCart } = useCart();
+  const { getCart,removeFromCart } = useCart();
+  const navigate = useNavigate();
+  const isMount = useRef(true);
   useEffect(() => {
     const populateCart = async () => {
       try {
         let response = await getCart();
+        if(isMount.current){
         setCartList(response.data.cart);
         let total = response.data.cart.reduce((acc,curr)=>acc+parseInt(curr.price.replace(/,/g,'')),0);
         setTotalPrice(total);
+        }
       } catch (error) {
         console.log(error);
       }
     };
     populateCart();
-  }, []);
+
+    return ()=>isMount.current=false;
+
+  }, [cartList,totalPrice]);
+
+  const removeHandler=async (id)=>{
+    try{
+        let response = await removeFromCart(id);
+        setCartList(response.data.cart);
+        if(response.data.cart.length===0){
+            navigate("/products-listing")
+        }
+        let total = response.data.cart.reduce((acc,curr)=>acc+parseInt(curr.price.replace(/,/g,'')),0);
+        setTotalPrice(total);
+    }catch(error){
+        console.log(error);
+    }
+  }
   return (
     <div>
       <Navbar />
       <div className={classes["main-cart"]}>
         <h2 className="centered-text grey">My Cart</h2>
         <div className={classes['cart-container']}>
-          <ul className={classes["cart-list"]}>
+          <div className={classes["cart-list"]}>
             {cartList.map((product) => {
               return (
-                  <li>
+                  
                 <div
-                  key={product.id}
+                key={product.id}
                   className="card-container product-container product-landscape-container"
                 >
                   <div className="card-image-basic product-landscape-image relative-pos">
@@ -57,16 +79,16 @@ const Cart = () => {
                       </label>
                     </div>
                     <div className="card-footer-basic product-card-footer fluid-y bg-purple-50">
-                      <button className="btn btn-secondary">
+                      <button className="btn btn-secondary" onClick={()=>removeHandler(product._id)}>
                         Remove from cart
                       </button>
                     </div>
                   </div>
                 </div>
-                </li>
+                
               );
             })}
-          </ul>
+          </div>
           <div className={classes["cart-summary-container"]}>
             <h2>Price Details</h2>
             <hr />
