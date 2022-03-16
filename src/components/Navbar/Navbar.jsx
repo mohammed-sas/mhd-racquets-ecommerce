@@ -3,8 +3,10 @@ import logo from "../../assets/ecomm-logo.png";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../context/auth-context";
 import { Link } from "react-router-dom";
+import { useCart } from "../../context/cart-context";
 const Navbar = () => {
   const navigate = useNavigate();
+  const {totalItems} = useCart();
   const { currentUser, signout } = useAuth();
   return (
     <nav className="nav-bar bg-white">
@@ -52,7 +54,7 @@ const Navbar = () => {
               <div className="badge">
                 <i className="fas fa-shopping-cart bg-none grey"></i>
                 <div className="badge-number">
-                  <span>5</span>
+                  {totalItems? <span>{totalItems}</span>:null}
                 </div>
               </div>
               <p className="bg-none grey">Cart</p>

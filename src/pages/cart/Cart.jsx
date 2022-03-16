@@ -1,6 +1,14 @@
+import { useEffect } from "react";
 import Navbar from "../../components/Navbar/Navbar";
+import { useCart } from "../../context/cart-context";
 import './cart.css';
 const Cart = () => {
+
+    const {getCart} = useCart();
+    useEffect(()=>{
+
+        getCart();
+    },[])
   return (
     <div>
       <Navbar />

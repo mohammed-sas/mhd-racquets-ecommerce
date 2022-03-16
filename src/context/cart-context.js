@@ -10,19 +10,32 @@ const useCart=()=>useContext(CartContext);
 
 const useCartProvider=()=>{
     let token = localStorage.getItem("token");
-    console.log(token);
     const addToCart=async (product)=>{
+            let data={
+                product
+            }
             try{
-                let response = await axios.post('/api/user/cart',product,{headers:{
+                let response = await axios.post('/api/user/cart',JSON.stringify(data),{headers:{
                     authorization : token
                 }});
-                console.log(response);
+                
+                
             }catch(error){
                 console.log(error);
             }
     }
+    const getCart= async ()=>{
+        try{
+            let response = await axios.get('/api/user/cart',{headers:{
+                authorization : token
+            }})
+            console.log(response.data.cart);
+        }catch(error){
+            console.log(error)
+        }
+    }
 
-    return {addToCart};
+    return {addToCart,getCart};
 }
 
 const CartContext = createContext(null);
