@@ -7,6 +7,7 @@ const Cart = () => {
   const [cartList, setCartList] = useState([]);
   const [totalPrice,setTotalPrice] = useState(0);
   const [totalItems,setTotalItems] = useState(0);
+  const [loading,setLoading] = useState(false);
   const { getCart,removeFromCart,qtyIncDec } = useCart();
   const navigate = useNavigate();
 
@@ -14,9 +15,9 @@ const Cart = () => {
    
     const populateCart = async () => {
       try {
+        setLoading(true);
         let response = await getCart();
-        console.log('response',response);
-        
+        setLoading(false);
         setCartList(response.data.cart);
         let total = response.data.cart.reduce((acc,curr)=>acc+parseInt(curr.price.replace(/,/g,'')),0);
         setTotalPrice(total);
@@ -78,9 +79,10 @@ const Cart = () => {
   return (
     <div>
       <Navbar />
+      {loading ?<span className={classes["loader"]}></span> : null}
       <div className={classes["main-cart"]}>
         <h2 className="centered-text grey">My Cart</h2>
-        <div className={classes['cart-container']}>
+       { !loading && <div className={classes['cart-container']}>
           <div className={classes["cart-list"]}>
             {cartList.map((product) => {
               return (
@@ -150,6 +152,7 @@ const Cart = () => {
             <button className="btn btn-primary">Place Order</button>
           </div>
         </div>
+        }      
       </div>
     </div>
   );

@@ -12,10 +12,11 @@ const useCartProvider=()=>{
     let token = localStorage.getItem("token");
     const addToCart=async (product)=>{
             try{
+           
                 let response = await axios.post('/api/user/cart',{product},{headers:{
                     authorization : token
                 }});
-                
+        
                 return response.status;
             }catch(error){
                 console.log(error);
