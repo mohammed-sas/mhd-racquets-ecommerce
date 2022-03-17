@@ -7,8 +7,10 @@ import racquet2 from "../../assets/rq-2.webp";
 import racquet3 from "../../assets/rq-3.webp";
 import stringImage from "../../assets/string.webp";
 import shuttle from "../../assets/shuttle.webp";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <Navbar />
@@ -19,6 +21,7 @@ const Home = () => {
           </div>
           <div className="hero-heading">
             <h1>Badminton</h1>
+            <button className="btn btn-primary" onClick={()=>navigate("/products-listing")}>Shop Now</button>
           </div>
         </div>
         <h2 className="centered-text grey">Featured Categories</h2>
