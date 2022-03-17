@@ -6,27 +6,33 @@ import classes from "./cart.module.css";
 const Cart = () => {
   const [cartList, setCartList] = useState([]);
   const [totalPrice,setTotalPrice] = useState(0);
-  const { getCart,removeFromCart,incrementQty } = useCart();
+  const [totalItems,setTotalItems] = useState(0);
+  const { getCart,removeFromCart,qtyIncDec } = useCart();
   const navigate = useNavigate();
-  const isMount = useRef(true);
+
   useEffect(() => {
+   
     const populateCart = async () => {
       try {
         let response = await getCart();
-        if(isMount.current){
+        console.log('response',response);
+        
         setCartList(response.data.cart);
         let total = response.data.cart.reduce((acc,curr)=>acc+parseInt(curr.price.replace(/,/g,'')),0);
         setTotalPrice(total);
-        }
+        let numItems = response.data.cart.reduce((acc,curr)=>acc+curr.qty,0);
+        setTotalItems(numItems);
+        
+        
       } catch (error) {
         console.log(error);
       }
     };
     populateCart();
 
-    return ()=>isMount.current=false;
+   
 
-  }, [cartList,totalPrice]);
+  }, []);
 
   const removeHandler=async (id)=>{
     try{
@@ -35,28 +41,40 @@ const Cart = () => {
         if(response.data.cart.length===0){
             navigate("/products-listing")
         }
-        let total = response.data.cart.reduce((acc,curr)=>acc+parseInt(curr.price.replace(/,/g,'')),0);
+        let total = response.data.cart.reduce((acc,curr)=>acc+(parseInt(curr.price.replace(/,/g,'')))*curr.qty,0);
         setTotalPrice(total);
+        let numItems = response.data.cart.reduce((acc,curr)=>acc+curr.qty,0);
+        setTotalItems(numItems);
     }catch(error){
         console.log(error);
     }
   }
-  const incrementHandler=async (action,id)=>{
+  const qtyHandler=async (action,id,quantity)=>{
     try{
-      let response = await incrementQty(action,id);
-      console.log(response);
+      if(quantity==1 && action.type ==="decrement"){
+        await removeHandler(id);
+        return;
+      }
+      let response = await qtyIncDec(action,id);
+     
+      setCartList(response.data.cart);
+     
+      if(response.data.cart.length===0)
+        navigate("/products-listing")
+      
+        let total = response.data.cart.reduce((acc,curr)=>acc+parseInt(curr.price.replace(/,/g,''))*curr.qty,0);
+        setTotalPrice(total);
+        let numItems = response.data.cart.reduce((acc,curr)=>acc+curr.qty,0);
+        setTotalItems(numItems);
+        
+    
     }catch(error){
       console.log(error);
     }
   }
-  const decrementHandler=async (action,id)=>{
-    try{
-      let response = await decrementQty(action,id);
-      console.log(response);
-    }catch(error){
-      console.log(error);
-    }
-  }
+
+  
+  
   return (
     <div>
       <Navbar />
@@ -68,7 +86,7 @@ const Cart = () => {
               return (
                   
                 <div
-                key={product.id}
+                key={product._id}
                   className="card-container product-container product-landscape-container"
                 >
                   <div className="card-image-basic product-landscape-image relative-pos">
@@ -89,9 +107,9 @@ const Cart = () => {
                     <div className="product-quantity">
                       <label htmlFor="quantity">
                         Quantity:
-                        <button className="btn-qty" onClick={()=>incrementHandler({type:"decrement"},product._id)}>-</button>
-                        <input id={classes["qty-input"]} type="number" placeholder="1" />
-                        <button className="btn-qty" onClick={()=>incrementHandler({type:"increment"},product._id)}>+</button>
+                        <button className="btn-qty" onClick={()=>qtyHandler({type:"decrement"},product._id,product.qty)}>-</button>
+                        <input id={classes["qty-input"]} type="number"  placeholder={product.qty} />
+                        <button className="btn-qty" onClick={()=>qtyHandler({type:"increment"},product._id)}>+</button>
                       </label>
                     </div>
                     <div className="card-footer-basic product-card-footer fluid-y bg-purple-50">
@@ -110,7 +128,7 @@ const Cart = () => {
             <hr />
             <div className={classes["total-summary"]}>
               <div>
-                <span>Price ({cartList.length} item)</span>
+                <span>Price ({totalItems} item)</span>
                 <span>₹{totalPrice}</span>
               </div>
               <div>
@@ -129,12 +147,12 @@ const Cart = () => {
             </div>
 
             <p>You will save ₹0 in this order</p>
-            <button class="btn btn-primary">Place Order</button>
+            <button className="btn btn-primary">Place Order</button>
           </div>
         </div>
       </div>
     </div>
   );
-};
+          }
 
 export default Cart;

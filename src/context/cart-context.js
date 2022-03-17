@@ -43,7 +43,7 @@ const useCartProvider=()=>{
         }
     }
 
-    const incrementQty=async (action,productId)=>{
+    const qtyIncDec=async (action,productId)=>{
         
         try{
             let response = await axios.post(`/api/user/cart/${productId}`,{action},{headers:{
@@ -55,19 +55,9 @@ const useCartProvider=()=>{
         }
     }
 
-    const decrementQty=async (action,productId)=>{
-        
-        try{
-            let response = await axios.post(`/api/user/cart/${productId}`,{action},{headers:{
-                authorization : token
-            }});
-            return response;
-        }catch(error){
-            console.log(error)
-        }
-    }
+
     
-    return {addToCart,getCart,removeFromCart,incrementQty};
+    return {addToCart,getCart,removeFromCart,qtyIncDec};
 }
 
 const CartContext = createContext(null);
