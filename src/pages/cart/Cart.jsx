@@ -19,7 +19,7 @@ const Cart = () => {
         let response = await getCart();
         setLoading(false);
         setCartList(response.data.cart);
-        let total = response.data.cart.reduce((acc,curr)=>acc+parseInt(curr.price.replace(/,/g,'')),0);
+        let total = response.data.cart.reduce((acc,curr)=>acc+parseInt(curr.price.replace(/,/g,''))*curr.qty,0);
         setTotalPrice(total);
         let numItems = response.data.cart.reduce((acc,curr)=>acc+curr.qty,0);
         setTotalItems(numItems);
