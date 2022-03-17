@@ -6,7 +6,7 @@ import classes from "./cart.module.css";
 const Cart = () => {
   const [cartList, setCartList] = useState([]);
   const [totalPrice,setTotalPrice] = useState(0);
-  const { getCart,removeFromCart } = useCart();
+  const { getCart,removeFromCart,incrementQty } = useCart();
   const navigate = useNavigate();
   const isMount = useRef(true);
   useEffect(() => {
@@ -41,6 +41,22 @@ const Cart = () => {
         console.log(error);
     }
   }
+  const incrementHandler=async (action,id)=>{
+    try{
+      let response = await incrementQty(action,id);
+      console.log(response);
+    }catch(error){
+      console.log(error);
+    }
+  }
+  const decrementHandler=async (action,id)=>{
+    try{
+      let response = await decrementQty(action,id);
+      console.log(response);
+    }catch(error){
+      console.log(error);
+    }
+  }
   return (
     <div>
       <Navbar />
@@ -73,9 +89,9 @@ const Cart = () => {
                     <div className="product-quantity">
                       <label htmlFor="quantity">
                         Quantity:
-                        <button className="btn-qty">-</button>
+                        <button className="btn-qty" onClick={()=>incrementHandler({type:"decrement"},product._id)}>-</button>
                         <input id={classes["qty-input"]} type="number" placeholder="1" />
-                        <button className="btn-qty">+</button>
+                        <button className="btn-qty" onClick={()=>incrementHandler({type:"increment"},product._id)}>+</button>
                       </label>
                     </div>
                     <div className="card-footer-basic product-card-footer fluid-y bg-purple-50">

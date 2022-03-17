@@ -42,8 +42,32 @@ const useCartProvider=()=>{
             console.log(error)
         }
     }
+
+    const incrementQty=async (action,productId)=>{
+        
+        try{
+            let response = await axios.post(`/api/user/cart/${productId}`,{action},{headers:{
+                authorization : token
+            }});
+            return response;
+        }catch(error){
+            console.log(error)
+        }
+    }
+
+    const decrementQty=async (action,productId)=>{
+        
+        try{
+            let response = await axios.post(`/api/user/cart/${productId}`,{action},{headers:{
+                authorization : token
+            }});
+            return response;
+        }catch(error){
+            console.log(error)
+        }
+    }
     
-    return {addToCart,getCart,removeFromCart};
+    return {addToCart,getCart,removeFromCart,incrementQty};
 }
 
 const CartContext = createContext(null);
