@@ -14,14 +14,15 @@ import { useFilter } from "../../context/filter-context";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
 import { useCart } from "../../context/cart-context";
+import { useWishlist } from "../../context/wishlist-context";
 
 const Products = () => {
   const { state } = useFilter();
   const navigate = useNavigate();
   const { currentUser } = useAuth();
-  const { addToCart,cartState } = useCart();
+  const { addToCart, cartState } = useCart();
   const { items, lowToHigh, highToLow, categories, maxPrice, rating } = state;
-
+  const { wishlistState, addToWishlist,deleteFromWishlist } = useWishlist();
   let filteredItems = lowToHigh ? getLowToHigh(items) : items;
   filteredItems = highToLow ? getHighToLow(items) : items;
   filteredItems = getCategoryWise(filteredItems, categories);
@@ -30,28 +31,47 @@ const Products = () => {
 
   const addToCartHandler = async (product) => {
     try {
-    
       if (!currentUser) {
         navigate("/login");
       } else {
         let result = isProductExist(product._id);
-        
-        if(result==="Go to cart"){
-            navigate("/cart")
-            return;
-        } 
+
+        if (result === "Go to cart") {
+          navigate("/cart");
+          return;
+        }
         await addToCart(product);
       }
     } catch (error) {
       console.log(error);
     }
   };
-  const isProductExist=(id)=>{
-      let isExist = cartState.cart.find(item=> item._id === id);
+  const isProductExist = (id) => {
+    let isExist = cartState.cart.find((item) => item._id === id);
 
-      return isExist? "Go to cart" : "Add to Cart";
-  }
+    return isExist ? "Go to cart" : "Add to Cart";
+  };
 
+  const wishlistHandler = async (product) => {
+    try {
+      let isExist = isProductWishlisted(product);
+      if (!isExist) {
+        await addToWishlist(product);
+      } else {
+        await deleteFromWishlist(product._id);
+        return;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const isProductWishlisted = (product) => {
+    let result = wishlistState.wishlist.find(
+      (item) => item._id === product._id
+    );
+    return result ? "wishlist-active" : "";
+  };
   return (
     <div className="product-page-container">
       <Navbar />
@@ -64,7 +84,10 @@ const Products = () => {
               <div className="card-image-basic product-image relative-pos">
                 <img src={product.image} alt="astrox 100 game" />
                 <span className="btn-dismiss">
-                  <i className="fas fa-heart "></i>
+                  <i
+                    className={"fas fa-heart " + isProductWishlisted(product)}
+                    onClick={() => wishlistHandler(product)}
+                  ></i>
                 </span>
               </div>
               <div className="card-heading bg-purple-50">
