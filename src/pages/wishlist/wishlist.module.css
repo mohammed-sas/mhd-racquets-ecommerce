@@ -1,0 +1,29 @@
+.wishlist-main{
+    margin:1rem auto;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+.wishlist-container{
+    display: flex;
+    gap: 1rem;
+}
+
+.display-none{
+    display: none;
+}
+
+@media only screen and (max-width:900px) {
+    .wishlist-container{
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media only screen and (max-width:600px) {
+    html{
+        font-size: 50%;
+    }
+}
+
