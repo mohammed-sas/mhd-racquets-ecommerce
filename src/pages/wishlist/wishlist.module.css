@@ -8,7 +8,12 @@
     display: flex;
     gap: 1rem;
 }
-
+.wishlist-items{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    gap: 1rem;
+}
 .display-none{
     display: none;
 }

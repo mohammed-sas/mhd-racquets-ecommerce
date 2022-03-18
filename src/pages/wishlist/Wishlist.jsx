@@ -8,7 +8,7 @@ const Wishlist = () => {
       <Navbar />
       <main className={classes["wishlist-main"]}>
         <h1 className="centered-text grey">My Wishlist</h1>
-        <ul>
+        <ul className={classes["wishlist-items"]}>
           {wishlistState.wishlist.map((product) => {
             return (
               <li key={product._id}>
