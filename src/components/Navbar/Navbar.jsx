@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { useCart } from "../../context/cart-context";
 const Navbar = () => {
   const navigate = useNavigate();
-  const {totalItems} = useCart();
+  const {cartState} = useCart();
   const { currentUser, signout } = useAuth();
   return (
     <nav className="nav-bar bg-white">
@@ -54,7 +54,7 @@ const Navbar = () => {
               <div className="badge">
                 <i className="fas fa-shopping-cart bg-none grey"></i>
                 <div className="badge-number">
-                  {totalItems? <span>{totalItems}</span>:null}
+                  {cartState.cart.length? <span>{cartState.cart.length}</span>:null}
                 </div>
               </div>
               <p className="bg-none grey">Cart</p>
