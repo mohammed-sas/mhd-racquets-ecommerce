@@ -13,8 +13,8 @@ const Signup = () => {
     const navigate=useNavigate();
     const [user,setUser] = useState({
         email:"",
-        fname:"",
-        lname:"",
+        firstName:"",
+        lastName:"",
         password:"",
         confirmPassword:"",
     });
@@ -53,10 +53,10 @@ const Signup = () => {
                             <br/> <input id="email" name="email" onChange={changeHandler} type="email" placeholder="abc@neog.com"/>
                         </label>
                         <label htmlFor="fname">First Name 
-                            <br/> <input id="fname" name="fname" required onChange={changeHandler} type="text" placeholder="First Name"/>
+                            <br/> <input id="firstName" name="fname" required onChange={changeHandler} type="text" placeholder="First Name"/>
                         </label>
                         <label htmlFor="lname">Last Name 
-                            <br/> <input id="lname" name="lname" required onChange={changeHandler} type="text" placeholder="Last Name"/>
+                            <br/> <input id="lastName" name="lname" required onChange={changeHandler} type="text" placeholder="Last Name"/>
                         </label>
                         
                         <label htmlFor="password">Password

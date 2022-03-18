@@ -30,7 +30,7 @@ const Navbar = () => {
         <ul>
           <li>
             {currentUser ? (
-              `${currentUser.fname}`
+              `${currentUser.firstName}`
             ) : (
               <button
                 className="btn btn-primary"

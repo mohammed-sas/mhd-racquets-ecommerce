@@ -30,25 +30,27 @@ const Products = () => {
 
   const addToCartHandler = async (product) => {
     try {
+    
       if (!currentUser) {
         navigate("/login");
       } else {
-        let item = cartState.cart.find(
-          (cartProduct) => cartProduct._id === product._id
-        );
-        if (item) {
-          navigate("/cart");
-        } else {
-          let status = await addToCart(product);
-          if (status === 201) {
-            navigate("/cart");
-          }
-        }
+        let result = isProductExist(product._id);
+        
+        if(result==="Go to cart"){
+            navigate("/cart")
+            return;
+        } 
+        await addToCart(product);
       }
     } catch (error) {
       console.log(error);
     }
   };
+  const isProductExist=(id)=>{
+      let isExist = cartState.cart.find(item=> item._id === id);
+
+      return isExist? "Go to cart" : "Add to Cart";
+  }
 
   return (
     <div className="product-page-container">
@@ -82,7 +84,7 @@ const Products = () => {
                   className="btn btn-primary"
                   onClick={() => addToCartHandler(product)}
                 >
-                  Add to Cart
+                  {isProductExist(product._id)}
                 </button>
               </div>
             </div>

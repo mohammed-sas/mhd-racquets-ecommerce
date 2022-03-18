@@ -44,6 +44,7 @@ const Login = () => {
                 name="email"
                 type="email"
                 placeholder="abc@neog.com"
+                defaultValue="mohammed@gmail.com"
               />
             </label>
 
@@ -51,10 +52,11 @@ const Login = () => {
               Password
               <br />{" "}
               <input
-                type="password"
+                type="text"
                 name="password"
                 onChange={handleChange}
                 placeholder="*******"
+                defaultValue="password"
               />
             </label>
 
