@@ -19,7 +19,7 @@ const Products = () => {
   const { state } = useFilter();
   const navigate = useNavigate();
   const { currentUser } = useAuth();
-  const { addToCart, getCart } = useCart();
+  const { addToCart, getCar,cartState } = useCart();
   const { items, lowToHigh, highToLow, categories, maxPrice, rating } = state;
 
   let filteredItems = lowToHigh ? getLowToHigh(items) : items;
@@ -33,8 +33,7 @@ const Products = () => {
       if (!currentUser) {
         navigate("/login");
       } else {
-        let cart = await getCart();
-        let item = cart.data.cart.find(
+        let item = cartState.cart.find(
           (cartProduct) => cartProduct._id === product._id
         );
         if (item) {

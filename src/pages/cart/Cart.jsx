@@ -4,11 +4,8 @@ import Navbar from "../../components/Navbar/Navbar";
 import { useCart } from "../../context/cart-context";
 import classes from "./cart.module.css";
 const Cart = () => {
-  const [cartList, setCartList] = useState([]);
-  const [totalPrice,setTotalPrice] = useState(0);
-  const [totalItems,setTotalItems] = useState(0);
   const [loading,setLoading] = useState(false);
-  const { getCart,removeFromCart,qtyIncDec } = useCart();
+  const {cartState,getCart,removeFromCart,qtyIncDec } = useCart();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,15 +13,8 @@ const Cart = () => {
     const populateCart = async () => {
       try {
         setLoading(true);
-        let response = await getCart();
-        setLoading(false);
-        setCartList(response.data.cart);
-        let total = response.data.cart.reduce((acc,curr)=>acc+parseInt(curr.price.replace(/,/g,''))*curr.qty,0);
-        setTotalPrice(total);
-        let numItems = response.data.cart.reduce((acc,curr)=>acc+curr.qty,0);
-        setTotalItems(numItems);
-        
-        
+        await getCart();
+        setLoading(false);  
       } catch (error) {
         console.log(error);
       }
@@ -37,15 +27,10 @@ const Cart = () => {
 
   const removeHandler=async (id)=>{
     try{
-        let response = await removeFromCart(id);
-        setCartList(response.data.cart);
-        if(response.data.cart.length===0){
+        await removeFromCart(id);
+        if(cartState.cart.length===1){
             navigate("/products-listing")
         }
-        let total = response.data.cart.reduce((acc,curr)=>acc+(parseInt(curr.price.replace(/,/g,'')))*curr.qty,0);
-        setTotalPrice(total);
-        let numItems = response.data.cart.reduce((acc,curr)=>acc+curr.qty,0);
-        setTotalItems(numItems);
     }catch(error){
         console.log(error);
     }
@@ -56,18 +41,9 @@ const Cart = () => {
         await removeHandler(id);
         return;
       }
-      let response = await qtyIncDec(action,id);
-     
-      setCartList(response.data.cart);
-     
-      if(response.data.cart.length===0)
+      await qtyIncDec(action,id);
+      if(cartState.cart.length===0)
         navigate("/products-listing")
-      
-        let total = response.data.cart.reduce((acc,curr)=>acc+parseInt(curr.price.replace(/,/g,''))*curr.qty,0);
-        setTotalPrice(total);
-        let numItems = response.data.cart.reduce((acc,curr)=>acc+curr.qty,0);
-        setTotalItems(numItems);
-        
     
     }catch(error){
       console.log(error);
@@ -84,7 +60,7 @@ const Cart = () => {
         <h2 className="centered-text grey">My Cart</h2>
        { !loading && <div className={classes['cart-container']}>
           <div className={classes["cart-list"]}>
-            {cartList.map((product) => {
+            {cartState.cart.map((product) => {
               return (
                   
                 <div
@@ -130,8 +106,8 @@ const Cart = () => {
             <hr />
             <div className={classes["total-summary"]}>
               <div>
-                <span>Price ({totalItems} item)</span>
-                <span>₹{totalPrice}</span>
+                <span>Price ({cartState.totalItems} item)</span>
+                <span>₹{cartState.totalPrice}</span>
               </div>
               <div>
                 <span>Discount</span>
@@ -144,7 +120,7 @@ const Cart = () => {
               <hr />
               <div>
                 <h2>Total Amount</h2>
-                <h2>₹{totalPrice+299}</h2>
+                <h2>₹{cartState.totalPrice+299}</h2>
               </div>
             </div>
 
