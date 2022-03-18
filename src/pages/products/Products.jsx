@@ -19,7 +19,7 @@ const Products = () => {
   const { state } = useFilter();
   const navigate = useNavigate();
   const { currentUser } = useAuth();
-  const { addToCart, getCart } = useCart();
+  const { addToCart,cartState } = useCart();
   const { items, lowToHigh, highToLow, categories, maxPrice, rating } = state;
 
   let filteredItems = lowToHigh ? getLowToHigh(items) : items;
@@ -30,26 +30,27 @@ const Products = () => {
 
   const addToCartHandler = async (product) => {
     try {
+    
       if (!currentUser) {
         navigate("/login");
       } else {
-        let cart = await getCart();
-        let item = cart.data.cart.find(
-          (cartProduct) => cartProduct._id === product._id
-        );
-        if (item) {
-          navigate("/cart");
-        } else {
-          let status = await addToCart(product);
-          if (status === 201) {
-            navigate("/cart");
-          }
-        }
+        let result = isProductExist(product._id);
+        
+        if(result==="Go to cart"){
+            navigate("/cart")
+            return;
+        } 
+        await addToCart(product);
       }
     } catch (error) {
       console.log(error);
     }
   };
+  const isProductExist=(id)=>{
+      let isExist = cartState.cart.find(item=> item._id === id);
+
+      return isExist? "Go to cart" : "Add to Cart";
+  }
 
   return (
     <div className="product-page-container">
@@ -83,7 +84,7 @@ const Products = () => {
                   className="btn btn-primary"
                   onClick={() => addToCartHandler(product)}
                 >
-                  Add to Cart
+                  {isProductExist(product._id)}
                 </button>
               </div>
             </div>
