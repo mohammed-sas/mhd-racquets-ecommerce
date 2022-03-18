@@ -19,7 +19,7 @@ const Products = () => {
   const { state } = useFilter();
   const navigate = useNavigate();
   const { currentUser } = useAuth();
-  const { addToCart, getCar,cartState } = useCart();
+  const { addToCart,cartState } = useCart();
   const { items, lowToHigh, highToLow, categories, maxPrice, rating } = state;
 
   let filteredItems = lowToHigh ? getLowToHigh(items) : items;
