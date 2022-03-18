@@ -41,12 +41,14 @@ const Navbar = () => {
             )}
           </li>
           <li>
-            <div className="badge">
-              <i className="far fa-heart grey bg-none"></i>
-              <div className="badge-number">
-                <span>5</span>
+            <Link to="/wishlist">
+              <div className="badge">
+                <i className="far fa-heart grey bg-none"></i>
+                <div className="badge-number">
+                  <span>5</span>
+                </div>
               </div>
-            </div>
+            </Link>
           </li>
           <li>
             <Link to="/cart">
