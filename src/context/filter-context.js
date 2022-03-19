@@ -27,7 +27,14 @@ const FilterProvider =({children})=>{
                 categories:[...state.categories,action.payload],
                 [`show${action.payload}`]: true,
             }
-        }else{
+        }else if(action.payload){
+          return {
+            ...state,
+            categories:[action.payload],
+            // [`show${action.payload}`]:true
+          }
+        }
+        else{
             return{
                 ...state,
                 categories:state.categories.filter(item=> item != action.payload),
@@ -103,7 +110,7 @@ const FilterProvider =({children})=>{
         const response = await axios.get('/api/products');
         filterDispatch({type:"FETCHED",data:response.data.products});
         }catch(error){
-
+          console.log(error);
         }
         
   

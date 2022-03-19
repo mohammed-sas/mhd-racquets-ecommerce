@@ -8,9 +8,15 @@ import racquet3 from "../../assets/rq-3.webp";
 import stringImage from "../../assets/string.webp";
 import shuttle from "../../assets/shuttle.webp";
 import { useNavigate } from "react-router-dom";
+import {useFilter} from '../../context/filter-context.js'
 
 const Home = () => {
   const navigate = useNavigate();
+  const {filterDispatch} = useFilter();
+  const featuredCategoriesHandler=(category)=>{
+      filterDispatch({type:"CATEGORIES",payload:category});
+      navigate("/products-listing");
+  }
   return (
     <div>
       <Navbar />
@@ -26,19 +32,19 @@ const Home = () => {
         </div>
         <h2 className="centered-text grey">Featured Categories</h2>
         <div className="featured-categories">
-          <div className="featured-item">
+          <div className="featured-item" onClick={()=>featuredCategoriesHandler("Racquet")}>
             <img src={racquet3} alt="racquet" />
             <h3>Racquets</h3>
           </div>
-          <div className="featured-item">
+          <div className="featured-item" onClick={()=>featuredCategoriesHandler("ShuttleCock")}>
             <img src={shuttle} alt="shuttle" />
             <h3>Shuttlecock</h3>
           </div>
-          <div className="featured-item">
+          <div className="featured-item" onClick={()=>featuredCategoriesHandler("String")}>
             <img src={stringImage} alt="string" />
             <h3>String</h3>
           </div>
-          <div className="featured-item">
+          <div className="featured-item" onClick={()=>featuredCategoriesHandler("Shoe")}>
             <img src={shoeImage} alt="shoe" />
             <h3>Shoe</h3>
           </div>
