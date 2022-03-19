@@ -4,9 +4,11 @@ import { useNavigate } from "react-router";
 import { useAuth } from "../../context/auth-context";
 import { Link } from "react-router-dom";
 import { useCart } from "../../context/cart-context";
+import {useWishlist} from '../../context/wishlist-context'
 const Navbar = () => {
   const navigate = useNavigate();
   const {cartState} = useCart();
+  const {wishlistState} = useWishlist();
   const { currentUser, signout } = useAuth();
   return (
     <nav className="nav-bar bg-white">
@@ -41,17 +43,17 @@ const Navbar = () => {
             )}
           </li>
           <li>
-            <Link to="/wishlist">
+            <Link to={currentUser ? "/wishlist":"/login"}>
               <div className="badge">
                 <i className="far fa-heart grey bg-none"></i>
                 <div className="badge-number">
-                  <span>5</span>
+                 {wishlistState.totalItems? <span>{wishlistState.totalItems}</span>:null} 
                 </div>
               </div>
             </Link>
           </li>
           <li>
-            <Link to="/cart">
+            <Link to={currentUser ? "/cart":"/login"}>
             <div className="display-flex align-items">
               <div className="badge">
                 <i className="fas fa-shopping-cart bg-none grey"></i>

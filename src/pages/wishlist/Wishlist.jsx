@@ -2,12 +2,22 @@ import Navbar from "../../components/Navbar/Navbar";
 import { useWishlist } from "../../context/wishlist-context";
 import classes from "./wishlist.module.css";
 const Wishlist = () => {
-  const {wishlistState} = useWishlist();
+  const {wishlistState,deleteFromWishlist} = useWishlist();
+  const removeWishlist=async (id)=>{
+    try{
+      await deleteFromWishlist(id);
+    }catch(error){
+      console.log(error)
+    }
+  }
   return (
     <div>
       <Navbar />
       <main className={classes["wishlist-main"]}>
         <h1 className="centered-text grey">My Wishlist</h1>
+        {
+          wishlistState.wishlist.length === 0? <h2 className="centered-text">Your wishlist is empty!</h2>: null
+        }
         <ul className={classes["wishlist-items"]}>
           {wishlistState.wishlist.map((product) => {
             return (
@@ -16,7 +26,7 @@ const Wishlist = () => {
                   <div className="card-container product-container">
                     <div className="card-image-basic product-image relative-pos">
                       <img src={product.image} alt={product.title} />
-                      <span className="btn-dismiss">
+                      <span className="btn-dismiss" onClick={()=>removeWishlist(product._id)}>
                         <i className="fas fa-heart  wishlist-active"></i>
                       </span>
                     </div>
