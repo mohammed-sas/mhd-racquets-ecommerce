@@ -9,6 +9,7 @@ const getCategoryWise=(items,categories)=>{
     
     return items;
 };
+
 const getRatings=(items,rating)=>items.filter(item=> item.rating >= rating);
 export {
   getFastDelivered,

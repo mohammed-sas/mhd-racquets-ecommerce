@@ -17,14 +17,14 @@ img{
 nav{
     grid-area: nav;
 }
-main{
+.home-main{
     grid-area: main;
     overflow-y: scroll;
-    width: 80%;
+    width: 85%;
     margin:0 auto;
 }
 
-main::-webkit-scrollbar {
+.home-main::-webkit-scrollbar {
     display: none;
 }
 .hero-container{
@@ -35,6 +35,7 @@ main::-webkit-scrollbar {
 .featured-categories{
     display: flex;
     gap: 1rem;
+    flex-wrap: wrap;
 }
 .featured-item {
     display: flex;
@@ -45,6 +46,7 @@ main::-webkit-scrollbar {
     background: var(--white);
     width: 25rem;
     height: 30rem;
+    cursor: pointer;
 }
 .featured-item img{
     height: 25rem;
@@ -77,6 +79,7 @@ main::-webkit-scrollbar {
 }
 .fluid-x{
     justify-content: flex-end;
+    display: flex;
 }
 .grey{
     color : var(--gray-70)
@@ -88,6 +91,7 @@ main::-webkit-scrollbar {
 .padding-1rem{
     padding: 1rem;
 }
+
 
 @media only screen and (max-width:900px) {
     html{

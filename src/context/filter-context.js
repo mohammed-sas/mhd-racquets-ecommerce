@@ -5,7 +5,7 @@ const FilterContext = createContext(null);
 
 const FilterProvider =({children})=>{
     const filterReducer=(state,action)=>{
-    
+    const {payload} = action;
     switch (action.type) {
     case "FETCHING_DATA":
         return{
@@ -17,27 +17,30 @@ const FilterProvider =({children})=>{
         return{
             ...state,
             loading:false,
-            items:action.data,
-            data:action.data,
+            items:payload,
+            data:payload,
         };
     case "CATEGORIES":
-        if(action.isSelected){
+        if(payload.isSelected){
             return{
                 ...state,
-                categories:[...state.categories,action.payload],
-                [`show${action.payload}`]: true,
+                categories:[...state.categories,...state.featuredCatgories,payload.category],
+                [`show${payload.category}`]: true,
+                featuredCatgories:[]
             }
-        }else{
+        }
+        else{
             return{
                 ...state,
-                categories:state.categories.filter(item=> item != action.payload),
-                [`show${action.payload}`]: false,
+                categories:state.categories.filter(item=> item != payload.category),
+                [`show${payload.category}`]: false,
+                featuredCatgories:[]
             }
         }
       case "PRICE_RANGE":
         return {
           ...state,
-          maxPrice: Number(action.payload),
+          maxPrice: Number(payload),
         };
       
       case "HIGH_TO_LOW":
@@ -56,7 +59,7 @@ const FilterProvider =({children})=>{
       case "RATING":
           return{
               ...state,
-              rating:action.payload
+              rating:payload
           }
 
       case "CLEAR_FILTER":
@@ -71,7 +74,8 @@ const FilterProvider =({children})=>{
         showString:false,
         showShoe:false,
         maxPrice: 14000,
-        rating:0,      
+        rating:0,
+        featuredCatgories:[]     
         };
 
       default:
@@ -92,6 +96,7 @@ const FilterProvider =({children})=>{
         showString:false,
         showShoe:false,
         maxPrice: 14000,
+        featuredCatgories:[],
         rating:0,
       })
 
@@ -101,9 +106,9 @@ const FilterProvider =({children})=>{
         try{
         filterDispatch({type:"FETCHING_DATA"})
         const response = await axios.get('/api/products');
-        filterDispatch({type:"FETCHED",data:response.data.products});
+        filterDispatch({type:"FETCHED",payload:response.data.products});
         }catch(error){
-
+          console.log(error);
         }
         
   
