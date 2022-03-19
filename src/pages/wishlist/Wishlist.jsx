@@ -2,9 +2,11 @@ import Navbar from "../../components/Navbar/Navbar";
 import { useWishlist } from "../../context/wishlist-context";
 import classes from "./wishlist.module.css";
 import {useCart} from '../../context/cart-context';
+import {useNavigate} from 'react-router-dom'
 const Wishlist = () => {
   const {wishlistState,deleteFromWishlist} = useWishlist();
   const {cartState,qtyIncDec,addToCart} = useCart();
+  const navigate = useNavigate();
   const removeWishlist=async (id)=>{
     try{
       await deleteFromWishlist(id);
@@ -31,7 +33,12 @@ const Wishlist = () => {
       <main className={classes["wishlist-main"]}>
         <h1 className="centered-text grey">My Wishlist</h1>
         {
-          wishlistState.wishlist.length === 0? <h2 className="centered-text">Your wishlist is empty!</h2>: null
+          wishlistState.wishlist.length === 0? 
+          <div className={classes["display-flex-center"]}>
+             <h2 className="centered-text">Your wishlist is empty!</h2>
+             <button className="btn btn-primary" onClick={()=>navigate("/products-listing")}>Explore more</button>
+          </div>
+         : null
         }
         <ul className={classes["wishlist-items"]}>
           {wishlistState.wishlist.map((product) => {
