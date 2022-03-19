@@ -22,10 +22,10 @@ const Filters = () => {
                 </div>
                 <div className="category filter-flex-y ">
                     <h3>Category</h3>
-                    <label htmlFor="racquets"><input name="racquets" checked={state.showRacquet} onChange={(e)=>filterDispatch({type:"CATEGORIES",payload:"Racquet",isSelected:e.target.checked})} type="checkbox"/> Racquets</label>
-                    <label htmlFor="shuttlecock"><input name="shuttlecock" checked={state.showShuttleCock} onChange={(e)=>filterDispatch({type:"CATEGORIES",payload:"ShuttleCock",isSelected:e.target.checked})} type="checkbox"/> Shuttlecock</label>
-                    <label htmlFor="string"><input name="string" checked={state.showString} onChange={(e)=>filterDispatch({type:"CATEGORIES",payload:"String",isSelected:e.target.checked})} type="checkbox"/> String</label>
-                    <label htmlFor="shoe"><input name="shoe" checked={state.showShoe} onChange={(e)=>filterDispatch({type:"CATEGORIES",payload:"Shoe",isSelected:e.target.checked})} type="checkbox"/> Shoe</label>
+                    <label htmlFor="racquets"><input name="racquets" checked={state.showRacquet} onChange={(e)=>filterDispatch({type:"CATEGORIES",payload:{category:"Racquet",isSelected:e.target.checked}})} type="checkbox"/> Racquets</label>
+                    <label htmlFor="shuttlecock"><input name="shuttlecock" checked={state.showShuttleCock} onChange={(e)=>filterDispatch({type:"CATEGORIES",payload:{category:"ShuttleCock",isSelected:e.target.checked}})} type="checkbox"/> Shuttlecock</label>
+                    <label htmlFor="string"><input name="string" checked={state.showString} onChange={(e)=>filterDispatch({type:"CATEGORIES",payload:{category:"String",isSelected:e.target.checked}})} type="checkbox"/> String</label>
+                    <label htmlFor="shoe"><input name="shoe" checked={state.showShoe} onChange={(e)=>filterDispatch({type:"CATEGORIES",payload:{category:"Shoe",isSelected:e.target.checked}})} type="checkbox"/> Shoe</label>
                 </div>
                 <div className="rating filter-flex-y">
                     <h3>Rating</h3>

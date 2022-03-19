@@ -15,7 +15,7 @@ const Home = () => {
   const {filterDispatch} = useFilter();
   const featuredCategoriesHandler=(category)=>{
     filterDispatch({type:"CLEAR_FILTER"});
-      filterDispatch({type:"CATEGORIES",payload:category,isSelected:true});
+      filterDispatch({type:"CATEGORIES",payload:{category,isSelected:true}});
       navigate("/products-listing");
   }
   return (
