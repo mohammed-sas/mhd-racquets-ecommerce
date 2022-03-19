@@ -1,13 +1,28 @@
 import Navbar from "../../components/Navbar/Navbar";
 import { useWishlist } from "../../context/wishlist-context";
 import classes from "./wishlist.module.css";
+import {useCart} from '../../context/cart-context';
 const Wishlist = () => {
   const {wishlistState,deleteFromWishlist} = useWishlist();
+  const {cartState,qtyIncDec,addToCart} = useCart();
   const removeWishlist=async (id)=>{
     try{
       await deleteFromWishlist(id);
     }catch(error){
       console.log(error)
+    }
+  }
+  const moveToCartHandler=async (product)=>{
+    try{
+      await removeWishlist(product._id);
+      let isExistInCart = cartState.cart.find(item=>item._id === product._id);
+      if(isExistInCart){
+        await qtyIncDec({type:"increment"},product._id);
+      }else{
+        await addToCart(product);
+      }
+    }catch(error){
+      console.log(error);
     }
   }
   return (
@@ -42,7 +57,7 @@ const Wishlist = () => {
                       <h2>₹{product.price}</h2>
                     </div>
                     <div className="card-footer-basic product-card-footer fluid-x bg-purple-50">
-                      <button className="btn btn-primary">Move to Cart</button>
+                      <button className="btn btn-primary" onClick={()=>moveToCartHandler(product)}>Move to Cart</button>
                     </div>
                   </div>
                 </div>
