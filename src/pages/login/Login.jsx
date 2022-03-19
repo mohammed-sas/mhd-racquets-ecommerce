@@ -52,7 +52,7 @@ const Login = () => {
               Password
               <br />{" "}
               <input
-                type="text"
+                type="password"
                 name="password"
                 onChange={handleChange}
                 placeholder="*******"

@@ -1,0 +1,41 @@
+.wishlist-main{
+    margin:1rem auto;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+.wishlist-container{
+    display: flex;
+    gap: 1rem;
+}
+.wishlist-items{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.display-none{
+    display: none;
+}
+
+.display-flex-center{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center
+}
+
+@media only screen and (max-width:900px) {
+    .wishlist-container{
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media only screen and (max-width:600px) {
+    html{
+        font-size: 50%;
+    }
+}
+
