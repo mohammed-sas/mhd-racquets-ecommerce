@@ -6,7 +6,7 @@ import {
   getLowToHigh,
   getHighToLow,
   getMaxPrice,
-  getCategoryWise,
+  getCategoryWise
 } from "../../utils/util";
 
 import "./products.css";
@@ -21,13 +21,14 @@ const Products = () => {
   const navigate = useNavigate();
   const { currentUser } = useAuth();
   const { addToCart, cartState } = useCart();
-  const { items, lowToHigh, highToLow, categories, maxPrice, rating } = state;
+  const { items, lowToHigh, highToLow, categories, maxPrice, rating ,featuredCatgories} = state;
   const { wishlistState, addToWishlist,deleteFromWishlist } = useWishlist();
   let filteredItems = lowToHigh ? getLowToHigh(items) : items;
   filteredItems = highToLow ? getHighToLow(items) : items;
   filteredItems = getCategoryWise(filteredItems, categories);
   filteredItems = getMaxPrice(filteredItems, maxPrice);
   filteredItems = getRatings(filteredItems, rating);
+
 
   const addToCartHandler = async (product) => {
     try {

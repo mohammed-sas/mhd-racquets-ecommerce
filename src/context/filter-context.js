@@ -24,21 +24,17 @@ const FilterProvider =({children})=>{
         if(action.isSelected){
             return{
                 ...state,
-                categories:[...state.categories,action.payload],
+                categories:[...state.categories,...state.featuredCatgories,action.payload],
                 [`show${action.payload}`]: true,
+                featuredCatgories:[]
             }
-        }else if(action.payload){
-          return {
-            ...state,
-            categories:[action.payload],
-            // [`show${action.payload}`]:true
-          }
         }
         else{
             return{
                 ...state,
                 categories:state.categories.filter(item=> item != action.payload),
                 [`show${action.payload}`]: false,
+                featuredCatgories:[]
             }
         }
       case "PRICE_RANGE":
@@ -78,7 +74,8 @@ const FilterProvider =({children})=>{
         showString:false,
         showShoe:false,
         maxPrice: 14000,
-        rating:0,      
+        rating:0,
+        featuredCatgories:[]     
         };
 
       default:
@@ -99,6 +96,7 @@ const FilterProvider =({children})=>{
         showString:false,
         showShoe:false,
         maxPrice: 14000,
+        featuredCatgories:[],
         rating:0,
       })
 
