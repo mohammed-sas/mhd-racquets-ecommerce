@@ -24,7 +24,9 @@ const useWishlistAPI=()=>{
             let response = await axios.post("/api/user/wishlist",{product},{headers:{
                 authorization:token
             }});
+            if(response.status===201){
             wishlistDispatch({type:"ADD_TO_WISHLIST",payload:response.data.wishlist})
+            }
         }catch(error){
             console.log(error);
         }
@@ -34,6 +36,7 @@ const useWishlistAPI=()=>{
             let response = await axios.delete(`/api/user/wishlist/${id}`,{headers:{
                 authorization:token
             }});
+            if(response.status===200)
             wishlistDispatch({type:"DELETE_FROM_WISHLIST",payload:response.data.wishlist});
         }catch(error){
             console.log(error);
