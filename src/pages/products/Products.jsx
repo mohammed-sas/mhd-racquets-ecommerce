@@ -73,6 +73,10 @@ const Products = () => {
     );
     return result ? "wishlist-active" : "";
   };
+
+  const viewDetailHandler = (id)=>{
+    navigate(`/product/${id}`);
+  }
   return (
     <div className="product-page-container">
       <Navbar />
@@ -103,7 +107,8 @@ const Products = () => {
               <div className="product-price padding-l-r-16-b-5  bg-purple-50">
                 <h2>₹{product.price}</h2>
               </div>
-              <div className="card-footer-basic product-card-footer fluid-x bg-purple-50">
+              <div className="card-footer-basic product-card-footer fluid-y bg-purple-50">
+                <button className="btn btn-secondary" onClick={()=>viewDetailHandler(product._id)}>View Details</button>
                 <button
                   className="btn btn-primary"
                   onClick={() => addToCartHandler(product)}
