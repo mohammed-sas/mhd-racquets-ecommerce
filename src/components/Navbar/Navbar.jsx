@@ -16,7 +16,7 @@ const Navbar = () => {
   const { currentUser, signout } = useAuth();
   const [searchResult, setSearchResult] = useState([]);
   const searchHandler = (e) => {
-    let inputVal = e.target.value.toLowerCase();
+    let inputVal = e.target.value.toLowerCase().trim();
     let result = state.data.filter(
       (item) =>
         item.title.toLowerCase().includes(inputVal) ||
