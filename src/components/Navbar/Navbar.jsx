@@ -17,11 +17,12 @@ const Navbar = () => {
   const [searchResult, setSearchResult] = useState([]);
   const searchHandler = (e) => {
     let inputVal = e.target.value.toLowerCase().trim();
+    let inputLen =inputVal.length;
     let result = state.data.filter(
       (item) =>
-        item.title.toLowerCase().includes(inputVal) ||
-        item.categoryName.toLowerCase().includes(inputVal)||
-        item.brand.toLowerCase().includes(inputVal)
+        item.title.toLowerCase().substring(0,inputLen).includes(inputVal) ||
+        item.categoryName.toLowerCase().substring(0,inputLen).includes(inputVal)||
+        item.brand.toLowerCase().substring(0,inputLen).includes(inputVal)
     );
     if (inputVal.length > 0) {
       result.length>0 ? setSearchResult(result) : setSearchResult([{id:0,title:"Not found"}]);
