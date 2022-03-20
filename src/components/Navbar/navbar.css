@@ -20,6 +20,20 @@ body{
 .search-bar{
     display: flex;
     flex-flow: row nowrap;
+    position: relative;
+}
+.search-list{
+    position: absolute;
+    width: 100%;
+    top:3rem;
+    z-index: 3;
+}
+.search-list ul{
+    list-style: none;
+}
+.search-list li{
+    border: 1px solid var(--gray-70);
+    padding: 1rem;
 }
 .grey{
     color:var(--gray-70)
