@@ -45,9 +45,7 @@ img {
     word-wrap: break-word;
 
 }
-.table-container{
-   /* justify-content: space-around; */
-}
+
 .flex-y{
     align-self: stretch;
     display: flex;

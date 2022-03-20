@@ -1,11 +1,18 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import classes from "./singleProduct.module.css";
 import axios from 'axios'
 import Rating from "../../components/rating/Rating";
+import { useWishlist } from "../../context/wishlist-context";
+import { useAuth } from "../../context/auth-context";
+import { useCart } from "../../context/cart-context";
 const SingleProduct = () => {
   const { productId } = useParams();
+  const navigate = useNavigate();
+  const {wishlistState,addToWishlist,deleteFromWishlist} = useWishlist();
+  const {currentUser} = useAuth();
+  const {cartState,addToCart} = useCart();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -22,6 +29,53 @@ const SingleProduct = () => {
     fetchProduct();
   }, []);
 
+  const wishlistHandler = async (id) => {
+    try {
+        
+        if(!currentUser){
+            navigate("/login");
+            return;
+        }
+      let isExist = isProductWishlisted(id);
+      if (!isExist) {
+        await addToWishlist(product);
+      } else {
+        await deleteFromWishlist(product._id);
+        return;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const isProductWishlisted = (id) => {
+    let result = wishlistState.wishlist.find(
+      (item) => item._id == id
+    );
+    return result ? true : false;
+  };
+
+  const addToCartHandler = async (product) => {
+    try {
+      if (!currentUser) {
+        navigate("/login");
+      } else {
+        let result = isProductExist(product._id);
+
+        if (result) {
+          navigate("/cart");
+          return;
+        }
+        await addToCart(product);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const isProductExist = (id) => {
+    let isExist = cartState.cart.find((item) => item._id === id);
+
+    return isExist ? true : false;
+  };
   return (
     <div>
       <Navbar />
@@ -31,8 +85,8 @@ const SingleProduct = () => {
           <div className={classes["product-img-container"]}>
             <img src={product.image} alt={product.title} />
             <div className={`${classes["flex-y"]} ${classes["padding-2"]}`}>
-                <button className="btn btn-secondary">Save to wishlist</button>
-                <button className="btn btn-primary">Add to cart</button>
+                <button className="btn btn-secondary" onClick={()=>wishlistHandler(productId)}>{isProductWishlisted(productId)?"Remove from wishlist" : "Save to wishlist"}</button>
+                <button className="btn btn-primary" onClick={()=>addToCartHandler(product)}>{isProductExist(product._id) ? "Go to cart" : "Add to cart"}</button>
             </div>
           </div>
           <div className={classes["product-typography"]}>
