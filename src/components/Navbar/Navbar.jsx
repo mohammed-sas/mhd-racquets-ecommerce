@@ -16,15 +16,16 @@ const Navbar = () => {
   const { currentUser, signout } = useAuth();
   const [searchResult, setSearchResult] = useState([]);
   const searchHandler = (e) => {
-    // setSearchItem(e.target.value);
     let inputVal = e.target.value.toLowerCase();
     let result = state.data.filter(
       (item) =>
         item.title.toLowerCase().includes(inputVal) ||
-        item.categoryName.toLowerCase().includes(inputVal)
+        item.categoryName.toLowerCase().includes(inputVal)||
+        item.brand.toLowerCase().includes(inputVal)
     );
-    if (inputVal.length > 0) setSearchResult(result);
-    else setSearchResult([]);
+    if (inputVal.length > 0) {
+      result.length>0 ? setSearchResult(result) : setSearchResult([{id:0,title:"Not found"}]);
+    } else setSearchResult([]);
   };
   return (
     <nav className="nav-bar bg-white">
@@ -43,7 +44,7 @@ const Navbar = () => {
       <div className="search-bar">
         <i className="fas fa-search grey"></i>
         <input type="text" placeholder="Search..." onChange={searchHandler} />
-        <Search  list={searchResult} />
+        <Search list={searchResult} />
       </div>
       <div className="nav-links">
         <ul>
