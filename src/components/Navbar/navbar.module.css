@@ -16,7 +16,7 @@ body {
   align-items: center;
   line-height: 1;
 }
-.search-bar {
+.nav-search-bar {
   display: flex;
   flex-flow: row nowrap;
   position: relative;

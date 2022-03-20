@@ -1,8 +1,8 @@
 import React from 'react'
-import '../Navbar/navbar.css'
+import classes from '../Navbar/navbar.module.css'
 const Search = ({list}) => {
     return (
-        <div className="search-list">
+        <div className={classes["search-list"]}>
             <ul>
                 {
                     list.map(item=>{
