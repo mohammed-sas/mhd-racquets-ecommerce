@@ -7,7 +7,10 @@ const Search = ({list}) => {
                 {
                     list.map(item=>{
                         return <li key={item.id}>
-                            {item.title}
+                            <div>
+                            <p>{item.title}</p>
+                            <small>in <strong>{item.categoryName}</strong></small>
+                            </div>
                         </li>
                     })
                 }
