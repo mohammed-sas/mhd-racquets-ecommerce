@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import {  useNavigate } from "react-router-dom";
-import Navbar from "../../components/Navbar/Navbar";
 import { useCart } from "../../context/cart-context";
 import classes from "./cart.module.css";
 const Cart = () => {
@@ -54,7 +53,6 @@ const Cart = () => {
   
   return (
     <div>
-      <Navbar />
       {loading ?<span className={classes["loader"]}></span> : null}
       <div className={classes["main-cart"]}>
         <h2 className="centered-text grey">My Cart</h2>

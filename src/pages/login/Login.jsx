@@ -1,4 +1,3 @@
-import Navbar from "../../components/Navbar/Navbar";
 import "./login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -30,7 +29,6 @@ const Login = () => {
   };
   return (
     <div>
-      <Navbar />
       <main className="login-container">
         <div className="login-form-container bg-white ">
           <h2 className="centered-text grey">Login</h2>

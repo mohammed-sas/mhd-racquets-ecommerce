@@ -1,4 +1,3 @@
-import Navbar from "../../components/Navbar/Navbar";
 import Filters from "../../components/filters/Filters";
 import Rating from "../../components/rating/Rating";
 import {
@@ -79,7 +78,6 @@ const Products = () => {
   }
   return (
     <div className="product-page-container">
-      <Navbar />
       <Filters />
       <main>
         {state.loading ? <h2>Loading...</h2> : null}

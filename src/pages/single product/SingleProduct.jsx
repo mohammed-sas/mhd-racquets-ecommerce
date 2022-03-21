@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Navbar from "../../components/Navbar/Navbar";
 import classes from "./singleProduct.module.css";
 import axios from 'axios'
 import Rating from "../../components/rating/Rating";
@@ -78,7 +77,6 @@ const SingleProduct = () => {
   };
   return (
     <div>
-      <Navbar />
       {loading ? <span className={classes["loader"]}></span> : null}
       {!loading ? (
         <div className={classes["product-container"]}>
