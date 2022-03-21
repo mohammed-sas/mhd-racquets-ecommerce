@@ -42,3 +42,8 @@ main{
 i{
     color:var(--gray-70)
 }
+
+.fluid-y{
+    flex-direction: column;
+    gap:5px
+}
