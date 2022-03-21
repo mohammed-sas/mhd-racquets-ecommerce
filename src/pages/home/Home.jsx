@@ -1,5 +1,4 @@
 import classes from "./home.module.css";
-import Navbar from "../../components/Navbar/Navbar";
 import heroImage from "../../assets/racquets-hero.webp";
 import shoeImage from "../../assets/shoe.webp";
 import racquet1 from "../../assets/rq-1.webp";
@@ -20,7 +19,6 @@ const Home = () => {
   }
   return (
     <div className={classes["home-container"]}>
-      <Navbar />
       <main className={classes["home-main"]}>
         <div className={classes["hero-container"]}>
           <div className={classes["hero-image"]}>

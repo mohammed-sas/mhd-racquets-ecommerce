@@ -1,4 +1,3 @@
-import Navbar from "../../components/Navbar/Navbar";
 import { useWishlist } from "../../context/wishlist-context";
 import classes from "./wishlist.module.css";
 import {useCart} from '../../context/cart-context';
@@ -29,7 +28,6 @@ const Wishlist = () => {
   }
   return (
     <div>
-      <Navbar />
       <main className={classes["wishlist-main"]}>
         <h1 className="centered-text grey">My Wishlist</h1>
         {

@@ -7,11 +7,12 @@ import Products from "./pages/products/Products";
 import MockAPI from "./components/mockman/MockAPI";
 import Wishlist from "./pages/wishlist/Wishlist";
 import SingleProduct from "./pages/single product/SingleProduct";
+import Navbar from "./components/Navbar/Navbar";
 function App() {
   
   return (
     <div>
-      
+       <Navbar/>
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/signup" element={<Signup/>}/>

@@ -1,10 +1,10 @@
-import Navbar from '../../components/Navbar/Navbar';
 import '../login/login.css';
 import './signup.css'
 import {useState} from 'react';
 import {useToggle} from '../../hooks/useToggle';
 import { useNavigate } from 'react-router';
 import { useAuth } from '../../context/auth-context'
+import {Link} from 'react-router-dom'
 const Signup = () => {
     const [showpass,setShowpass] = useToggle(false);
     const [showConfirmpass,setShowConfirmpass] = useToggle(false);
@@ -44,7 +44,6 @@ const Signup = () => {
     }
     return (
         <div>
-            <Navbar/>
             <main className="login-container">
                 <div className="login-form-container bg-white ">
                     <h2 className="centered-text grey">Signup</h2>
@@ -79,7 +78,7 @@ const Signup = () => {
                         </div>
                         <input type="submit" value="Create New Account"  className="btn btn-primary"/>
                         <div>
-                            <p className="centered-text"><a href="">Already have an account <i className="fas fa-chevron-right"></i></a></p>
+                            <p className="centered-text"><Link to="/login">Already have an account <i className="fas fa-chevron-right"></i></Link></p>
                         </div>
                     </form>
                 </div>
