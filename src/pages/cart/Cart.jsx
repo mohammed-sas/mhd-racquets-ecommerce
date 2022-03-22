@@ -11,7 +11,7 @@ const Cart = () => {
   const navigate = useNavigate();
   const [apiCalled,setApiCalled] = useState(false);
   const [processing,setProcessing] = useState(false);
-
+  const [alertMessage,setAlertMessage] = useState("");
   useEffect(() => {
     const populateCart = async () => {
       try {
@@ -44,7 +44,12 @@ const Cart = () => {
         await removeHandler(id);
         return;
       }
+      setApiCalled(true);
+      setProcessing(true);
+      setAlertMessage("updating quantity")
       await qtyIncDec(action, id);
+      setProcessing(false);
+      setAlertMessage("Quantity updated")
       if (cartState.cart.length === 0) navigate("/products-listing");
     } catch (error) {
       console.log(error);
@@ -136,8 +141,8 @@ const Cart = () => {
           </button>
         </div> : null}
       </div>
-      {(apiCalled&&processing) && <InfoAlert message={"removing from cart"}/>}
-        {(apiCalled&&!processing) && <SuccessAlert message={"removed from cart"}/>}
+      {(apiCalled&&processing) && <InfoAlert message={alertMessage}/>}
+        {(apiCalled&&!processing) && <SuccessAlert message={alertMessage}/>}
     </div>
   );
 };
