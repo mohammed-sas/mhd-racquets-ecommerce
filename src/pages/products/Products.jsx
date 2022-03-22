@@ -25,6 +25,8 @@ const Products = () => {
   const { addToCart, cartState } = useCart();
   const [apiCalled,setApiCalled] = useState(false);
   const [processing,setProcessing] = useState(false);
+  const [alertMessage,setAlertMessage] = useState("");
+  const [currentProd,setCurrentProd] = useState(null);
   const {
     items,
     lowToHigh,
@@ -53,10 +55,13 @@ const Products = () => {
           navigate("/cart");
           return;
         }
+        setCurrentProd(product._id);
         setApiCalled(true);
         setProcessing(true);
+        setAlertMessage("adding to cart");
         await addToCart(product);
         setProcessing(false);
+        setAlertMessage("added to cart");
       }
     } catch (error) {
       console.log(error);
@@ -71,10 +76,18 @@ const Products = () => {
   const wishlistHandler = async (product) => {
     try {
       let isExist = isProductWishlisted(product);
+      setApiCalled(true);
+      setProcessing(true);
       if (!isExist) {
+        setAlertMessage("saving to wishlist")
         await addToWishlist(product);
+        setProcessing(false);
+        setAlertMessage("saved to wishlist");
       } else {
+        setAlertMessage("removing from wishlist");
         await deleteFromWishlist(product._id);
+        setProcessing(false);
+        setAlertMessage("removed from wishlist");
         return;
       }
     } catch (error) {
@@ -129,8 +142,10 @@ const Products = () => {
                   View Details
                 </button>
                 <button
-                  className="btn btn-primary"
+                  className={"btn btn-primary "+((processing && product._id === currentProd) && "btn-disabled")}
                   onClick={() => addToCartHandler(product)}
+                  disabled={processing}
+
                 >
                   {isProductExist(product._id)}
                 </button>
@@ -138,8 +153,8 @@ const Products = () => {
             </div>
           );
         })}
-        {(apiCalled&&processing) && <InfoAlert message={"adding to cart"}/>}
-        {(apiCalled&&!processing) && <SuccessAlert message={"added to cart"}/>}
+        {(apiCalled&&processing) && <InfoAlert message={alertMessage}/>}
+        {(apiCalled&&!processing) && <SuccessAlert message={alertMessage}/>}
       
       </main>
     </div>

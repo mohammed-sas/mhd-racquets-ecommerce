@@ -29,7 +29,9 @@ const Cart = () => {
     try {
       setApiCalled(true);
       setProcessing(true);
+      setAlertMessage("removing from cart");
       await removeFromCart(id);
+      setAlertMessage("removed from cart");
       setProcessing(false);
       if (cartState.cart.length === 1) {
         navigate("/products-listing");

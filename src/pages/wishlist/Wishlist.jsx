@@ -1,10 +1,16 @@
+import {useState} from 'react'
 import { useWishlist } from "../../context/wishlist-context";
 import classes from "./wishlist.module.css";
 import {useCart} from '../../context/cart-context';
 import {useNavigate} from 'react-router-dom'
+import  InfoAlert from '../../components/Alerts/Info/InfoAlert'
+import SuccessAlert from '../../components/Alerts/Success/SuccessAlert';
 const Wishlist = () => {
   const {wishlistState,deleteFromWishlist} = useWishlist();
   const {cartState,qtyIncDec,addToCart} = useCart();
+  const [apiCalled,setApiCalled] = useState(false);
+  const [processing,setProcessing] = useState(false);
+  const [alertMessage,setAlertMessage] = useState("");
   const navigate = useNavigate();
   const removeWishlist=async (id)=>{
     try{
@@ -15,6 +21,9 @@ const Wishlist = () => {
   }
   const moveToCartHandler=async (product)=>{
     try{
+      setApiCalled(true);
+      setProcessing(true);
+      setAlertMessage("moving to cart");
       await removeWishlist(product._id);
       let isExistInCart = cartState.cart.find(item=>item._id === product._id);
       if(isExistInCart){
@@ -22,6 +31,8 @@ const Wishlist = () => {
       }else{
         await addToCart(product);
       }
+      setProcessing(false);
+      setAlertMessage("moved to cart");
     }catch(error){
       console.log(error);
     }
@@ -71,6 +82,8 @@ const Wishlist = () => {
           })}
         </ul>
       </main>
+      {(apiCalled&&processing) && <InfoAlert message={alertMessage}/>}
+      {(apiCalled&&!processing) && <SuccessAlert message={alertMessage}/>}
     </div>
   );
 };
