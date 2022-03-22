@@ -8,7 +8,7 @@ import {
   getCategoryWise,
 } from "../../utils/util";
 
-import "./products.css";
+import classes from "./products.module.css";
 import { useFilter } from "../../context/filter-context";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
@@ -27,6 +27,7 @@ const Products = () => {
   const [processing,setProcessing] = useState(false);
   const [alertMessage,setAlertMessage] = useState("");
   const [currentProd,setCurrentProd] = useState(null);
+  const [showFilter,setShowFilter] = useState(false);
   const {
     items,
     lowToHigh,
@@ -34,7 +35,6 @@ const Products = () => {
     categories,
     maxPrice,
     rating,
-    featuredCatgories,
   } = state;
   const { wishlistState, addToWishlist, deleteFromWishlist } = useWishlist();
   let filteredItems = lowToHigh ? getLowToHigh(items) : items;
@@ -106,8 +106,8 @@ const Products = () => {
     navigate(`/product/${id}`);
   };
   return (
-    <div className="product-page-container">
-      <Filters />
+    <main className={classes["product-page-container"]}>
+      <Filters  showFilter={showFilter} setShowFilter={setShowFilter}/>
       <main>
         {state.loading ? <h2>Loading...</h2> : null}
         {filteredItems.map((product) => {
@@ -134,7 +134,7 @@ const Products = () => {
               <div className="product-price padding-l-r-16-b-5  bg-purple-50">
                 <h2>₹{product.price}</h2>
               </div>
-              <div className="card-footer-basic product-card-footer fluid-y bg-purple-50">
+              <div className={`card-footer-basic product-card-footer ${classes["fluid-y"]} bg-purple-50`}>
                 <button
                   className="btn btn-secondary"
                   onClick={() => viewDetailHandler(product._id)}
@@ -157,7 +157,10 @@ const Products = () => {
         {(apiCalled&&!processing) && <SuccessAlert message={alertMessage}/>}
       
       </main>
-    </div>
+      <div className={classes["minimised-filter"]} onClick={()=>setShowFilter(!showFilter)}>
+        <span>Filter</span><i class="fas fa-chevron-circle-up"></i>
+      </div>
+    </main>
   );
 };
 

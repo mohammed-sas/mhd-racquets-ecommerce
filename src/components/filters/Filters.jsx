@@ -1,13 +1,14 @@
 
 import { useFilter } from '../../context/filter-context';
 import './filters.css';
-const Filters = () => {
+const Filters = ({showFilter,setShowFilter}) => {
     const {state,filterDispatch} = useFilter();
     return (
-<aside>
+<aside className={showFilter? "active":""}>
                 <div className="display-flex">
                     <h3>Filters</h3>
                     <button className="btn btn-link" onClick={()=>filterDispatch({type:"CLEAR_FILTER"})}>Clear</button>
+                    {showFilter && <i class="fas fa-times" onClick={()=>setShowFilter(false)}></i>}
                 </div>
                 <div className="price-filter">
                     <h3>Price</h3>
