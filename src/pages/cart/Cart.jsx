@@ -3,10 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { useCart } from "../../context/cart-context";
 import classes from "./cart.module.css";
 import CartSummary from "./CartSummary";
+import  InfoAlert from '../../components/Alerts/Info/InfoAlert'
+import SuccessAlert from '../../components/Alerts/Success/SuccessAlert';
 const Cart = () => {
   const [loading, setLoading] = useState(false);
   const { cartState, getCart, removeFromCart, qtyIncDec } = useCart();
   const navigate = useNavigate();
+  const [apiCalled,setApiCalled] = useState(false);
+  const [processing,setProcessing] = useState(false);
 
   useEffect(() => {
     const populateCart = async () => {
@@ -23,7 +27,10 @@ const Cart = () => {
 
   const removeHandler = async (id) => {
     try {
+      setApiCalled(true);
+      setProcessing(true);
       await removeFromCart(id);
+      setProcessing(false);
       if (cartState.cart.length === 1) {
         navigate("/products-listing");
       }
@@ -129,6 +136,8 @@ const Cart = () => {
           </button>
         </div> : null}
       </div>
+      {(apiCalled&&processing) && <InfoAlert message={"removing from cart"}/>}
+        {(apiCalled&&!processing) && <SuccessAlert message={"removed from cart"}/>}
     </div>
   );
 };

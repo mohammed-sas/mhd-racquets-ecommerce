@@ -5,7 +5,7 @@ import {
   getLowToHigh,
   getHighToLow,
   getMaxPrice,
-  getCategoryWise
+  getCategoryWise,
 } from "../../utils/util";
 
 import "./products.css";
@@ -14,23 +14,36 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
 import { useCart } from "../../context/cart-context";
 import { useWishlist } from "../../context/wishlist-context";
+import SuccessAlert from "../../components/Alerts/Success/SuccessAlert";
+import InfoAlert from "../../components/Alerts/Info/InfoAlert";
+import { useState } from "react";
 
 const Products = () => {
   const { state } = useFilter();
   const navigate = useNavigate();
   const { currentUser } = useAuth();
   const { addToCart, cartState } = useCart();
-  const { items, lowToHigh, highToLow, categories, maxPrice, rating ,featuredCatgories} = state;
-  const { wishlistState, addToWishlist,deleteFromWishlist } = useWishlist();
+  const [apiCalled,setApiCalled] = useState(false);
+  const [processing,setProcessing] = useState(false);
+  const {
+    items,
+    lowToHigh,
+    highToLow,
+    categories,
+    maxPrice,
+    rating,
+    featuredCatgories,
+  } = state;
+  const { wishlistState, addToWishlist, deleteFromWishlist } = useWishlist();
   let filteredItems = lowToHigh ? getLowToHigh(items) : items;
   filteredItems = highToLow ? getHighToLow(items) : items;
   filteredItems = getCategoryWise(filteredItems, categories);
   filteredItems = getMaxPrice(filteredItems, maxPrice);
   filteredItems = getRatings(filteredItems, rating);
 
-
   const addToCartHandler = async (product) => {
     try {
+
       if (!currentUser) {
         navigate("/login");
       } else {
@@ -40,7 +53,10 @@ const Products = () => {
           navigate("/cart");
           return;
         }
+        setApiCalled(true);
+        setProcessing(true);
         await addToCart(product);
+        setProcessing(false);
       }
     } catch (error) {
       console.log(error);
@@ -73,9 +89,9 @@ const Products = () => {
     return result ? "wishlist-active" : "";
   };
 
-  const viewDetailHandler = (id)=>{
+  const viewDetailHandler = (id) => {
     navigate(`/product/${id}`);
-  }
+  };
   return (
     <div className="product-page-container">
       <Filters />
@@ -106,7 +122,12 @@ const Products = () => {
                 <h2>₹{product.price}</h2>
               </div>
               <div className="card-footer-basic product-card-footer fluid-y bg-purple-50">
-                <button className="btn btn-secondary" onClick={()=>viewDetailHandler(product._id)}>View Details</button>
+                <button
+                  className="btn btn-secondary"
+                  onClick={() => viewDetailHandler(product._id)}
+                >
+                  View Details
+                </button>
                 <button
                   className="btn btn-primary"
                   onClick={() => addToCartHandler(product)}
@@ -117,6 +138,9 @@ const Products = () => {
             </div>
           );
         })}
+        {(apiCalled&&processing) && <InfoAlert message={"adding to cart"}/>}
+        {(apiCalled&&!processing) && <SuccessAlert message={"added to cart"}/>}
+      
       </main>
     </div>
   );
