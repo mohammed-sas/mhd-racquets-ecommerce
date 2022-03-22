@@ -47,7 +47,7 @@ const Navbar = () => {
         <input type="text" placeholder="Search products,brands and more" onChange={searchHandler} />
         <Search list={searchResult} />
       </div>
-      <div className="nav-links">
+      <div className={`nav-links ${classes["nav-links"]} ${classes["nav-links-ecomm"]}`}>
         <ul>
           <li>
             {currentUser ? (
