@@ -5,7 +5,7 @@ import {
   getLowToHigh,
   getHighToLow,
   getMaxPrice,
-  getCategoryWise
+  getCategoryWise,
 } from "../../utils/util";
 
 import "./products.css";
@@ -14,23 +14,38 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
 import { useCart } from "../../context/cart-context";
 import { useWishlist } from "../../context/wishlist-context";
+import SuccessAlert from "../../components/Alerts/Success/SuccessAlert";
+import InfoAlert from "../../components/Alerts/Info/InfoAlert";
+import { useState } from "react";
 
 const Products = () => {
   const { state } = useFilter();
   const navigate = useNavigate();
   const { currentUser } = useAuth();
   const { addToCart, cartState } = useCart();
-  const { items, lowToHigh, highToLow, categories, maxPrice, rating ,featuredCatgories} = state;
-  const { wishlistState, addToWishlist,deleteFromWishlist } = useWishlist();
+  const [apiCalled,setApiCalled] = useState(false);
+  const [processing,setProcessing] = useState(false);
+  const [alertMessage,setAlertMessage] = useState("");
+  const [currentProd,setCurrentProd] = useState(null);
+  const {
+    items,
+    lowToHigh,
+    highToLow,
+    categories,
+    maxPrice,
+    rating,
+    featuredCatgories,
+  } = state;
+  const { wishlistState, addToWishlist, deleteFromWishlist } = useWishlist();
   let filteredItems = lowToHigh ? getLowToHigh(items) : items;
   filteredItems = highToLow ? getHighToLow(items) : items;
   filteredItems = getCategoryWise(filteredItems, categories);
   filteredItems = getMaxPrice(filteredItems, maxPrice);
   filteredItems = getRatings(filteredItems, rating);
 
-
   const addToCartHandler = async (product) => {
     try {
+
       if (!currentUser) {
         navigate("/login");
       } else {
@@ -40,7 +55,13 @@ const Products = () => {
           navigate("/cart");
           return;
         }
+        setCurrentProd(product._id);
+        setApiCalled(true);
+        setProcessing(true);
+        setAlertMessage("adding to cart");
         await addToCart(product);
+        setProcessing(false);
+        setAlertMessage("added to cart");
       }
     } catch (error) {
       console.log(error);
@@ -55,10 +76,18 @@ const Products = () => {
   const wishlistHandler = async (product) => {
     try {
       let isExist = isProductWishlisted(product);
+      setApiCalled(true);
+      setProcessing(true);
       if (!isExist) {
+        setAlertMessage("saving to wishlist")
         await addToWishlist(product);
+        setProcessing(false);
+        setAlertMessage("saved to wishlist");
       } else {
+        setAlertMessage("removing from wishlist");
         await deleteFromWishlist(product._id);
+        setProcessing(false);
+        setAlertMessage("removed from wishlist");
         return;
       }
     } catch (error) {
@@ -73,9 +102,9 @@ const Products = () => {
     return result ? "wishlist-active" : "";
   };
 
-  const viewDetailHandler = (id)=>{
+  const viewDetailHandler = (id) => {
     navigate(`/product/${id}`);
-  }
+  };
   return (
     <div className="product-page-container">
       <Filters />
@@ -106,10 +135,17 @@ const Products = () => {
                 <h2>₹{product.price}</h2>
               </div>
               <div className="card-footer-basic product-card-footer fluid-y bg-purple-50">
-                <button className="btn btn-secondary" onClick={()=>viewDetailHandler(product._id)}>View Details</button>
                 <button
-                  className="btn btn-primary"
+                  className="btn btn-secondary"
+                  onClick={() => viewDetailHandler(product._id)}
+                >
+                  View Details
+                </button>
+                <button
+                  className={"btn btn-primary "+((processing && product._id === currentProd) && "btn-disabled")}
                   onClick={() => addToCartHandler(product)}
+                  disabled={processing}
+
                 >
                   {isProductExist(product._id)}
                 </button>
@@ -117,6 +153,9 @@ const Products = () => {
             </div>
           );
         })}
+        {(apiCalled&&processing) && <InfoAlert message={alertMessage}/>}
+        {(apiCalled&&!processing) && <SuccessAlert message={alertMessage}/>}
+      
       </main>
     </div>
   );

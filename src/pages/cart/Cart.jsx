@@ -3,11 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { useCart } from "../../context/cart-context";
 import classes from "./cart.module.css";
 import CartSummary from "./CartSummary";
+import  InfoAlert from '../../components/Alerts/Info/InfoAlert'
+import SuccessAlert from '../../components/Alerts/Success/SuccessAlert';
 const Cart = () => {
   const [loading, setLoading] = useState(false);
   const { cartState, getCart, removeFromCart, qtyIncDec } = useCart();
   const navigate = useNavigate();
-
+  const [apiCalled,setApiCalled] = useState(false);
+  const [processing,setProcessing] = useState(false);
+  const [alertMessage,setAlertMessage] = useState("");
   useEffect(() => {
     const populateCart = async () => {
       try {
@@ -23,7 +27,12 @@ const Cart = () => {
 
   const removeHandler = async (id) => {
     try {
+      setApiCalled(true);
+      setProcessing(true);
+      setAlertMessage("removing from cart");
       await removeFromCart(id);
+      setAlertMessage("removed from cart");
+      setProcessing(false);
       if (cartState.cart.length === 1) {
         navigate("/products-listing");
       }
@@ -37,7 +46,12 @@ const Cart = () => {
         await removeHandler(id);
         return;
       }
+      setApiCalled(true);
+      setProcessing(true);
+      setAlertMessage("updating quantity")
       await qtyIncDec(action, id);
+      setProcessing(false);
+      setAlertMessage("Quantity updated")
       if (cartState.cart.length === 0) navigate("/products-listing");
     } catch (error) {
       console.log(error);
@@ -129,6 +143,8 @@ const Cart = () => {
           </button>
         </div> : null}
       </div>
+      {(apiCalled&&processing) && <InfoAlert message={alertMessage}/>}
+        {(apiCalled&&!processing) && <SuccessAlert message={alertMessage}/>}
     </div>
   );
 };
