@@ -1,3 +1,4 @@
+import classes from './app.module.css'
 import Signup from "./pages/signup/Signup";
 import {Routes,Route} from 'react-router-dom';
 import Home from './pages/home/Home'
@@ -11,7 +12,7 @@ import Navbar from "./components/Navbar/Navbar";
 function App() {
   
   return (
-    <div>
+    <div className={classes["app-container"]}>
        <Navbar/>
       <Routes>
         <Route path="/" element={<Home/>}/>

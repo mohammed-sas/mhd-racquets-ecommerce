@@ -18,7 +18,6 @@ const Home = () => {
       navigate("/products-listing");
   }
   return (
-    <div className={classes["home-container"]}>
       <main className={classes["home-main"]}>
         <div className={classes["hero-container"]}>
           <div className={classes["hero-image"]}>
@@ -50,7 +49,7 @@ const Home = () => {
         </div>
         <h2 className="centered-text grey">New Arrivals</h2>
         <div className={classes["new-arrival-container"]}>
-          <div className={`card-container  ${classes["card-width-40"]} ${classes["bg-purple-50"]} ${classes["padding-1rem"]}`}>
+          <div className={`${classes["card-container"]}  ${classes["card-width-40"]} ${classes["bg-purple-50"]} ${classes["padding-1rem"]}`}>
             <div className="horizontal-card">
               <div className="card-image-basic">
                 <img src={racquet1} alt="gold medal edition" />
@@ -72,7 +71,7 @@ const Home = () => {
             </div>
           </div>
 
-          <div className={`card-container  ${classes["card-width-40"]} ${classes["bg-purple-50"]} ${classes["padding-1rem"]}`}>
+          <div className={`${classes["card-container"]}  ${classes["card-width-40"]} ${classes["bg-purple-50"]} ${classes["padding-1rem"]}`}>
             <div className="horizontal-card">
               <div className="card-image-basic">
                 <img src={racquet2} alt="aeronaut 4000" />
@@ -95,7 +94,6 @@ const Home = () => {
           </div>
         </div>
       </main>
-    </div>
   );
 };
 

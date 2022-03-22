@@ -6,19 +6,8 @@ html{
 img{
     max-inline-size: 100%;
 }
-.home-container{
-    display: grid;
-    grid-template-rows: auto 1fr;
-    gap: 1rem;
-    grid-template-areas: "nav"
-                        "main";
-    height: 100vh;
-}
-nav{
-    grid-area: nav;
-}
+
 .home-main{
-    grid-area: main;
     overflow-y: scroll;
     width: 85%;
     margin:0 auto;
