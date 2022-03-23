@@ -15,6 +15,7 @@ const Navbar = () => {
   const { cartState } = useCart();
   const { currentUser, signout } = useAuth();
   const [searchResult, setSearchResult] = useState([]);
+  const [showSidebar,setShowSidebar] = useState(false);
   const searchHandler = (e) => {
     let inputVal = e.target.value.toLowerCase().trim();
     let inputLen =inputVal.length;
@@ -30,7 +31,7 @@ const Navbar = () => {
   };
   return (
     <nav className={`nav-bar ${classes["bg-white"]}`}>
-      <div className={classes["hamburger-icon"]}>
+      <div className={classes["hamburger-icon"]} onClick={()=> setShowSidebar(true)}>
         <i className="fas fa-bars"></i>
       </div>
       <Link to="/">
@@ -47,9 +48,10 @@ const Navbar = () => {
         <input type="text" placeholder="Search products,brands and more" onChange={searchHandler} />
         <Search list={searchResult} />
       </div>
-      <div className={`nav-links ${classes["nav-links"]} ${classes["nav-links-ecomm"]}`}>
+      <div className={`nav-links ${classes["nav-links"]} ${classes["nav-links-ecomm"]} ${showSidebar && classes["active"]}`}>
         <ul>
-          <li>
+          {showSidebar && <li><i class="fas fa-times " onClick={()=>setShowSidebar(false)}></i></li>}
+          <li onClick={()=>setShowSidebar(false)}>
             {currentUser ? (
               `${currentUser.firstName}`
             ) : (
@@ -61,7 +63,7 @@ const Navbar = () => {
               </button>
             )}
           </li>
-          <li>
+          <li onClick={()=>setShowSidebar(false)}>
             <Link to={currentUser ? "/wishlist" : "/login"}>
               <div className="badge">
                 <i className={`far fa-heart ${classes["grey"]} ${classes["bg-none"]}`}></i>
@@ -73,7 +75,7 @@ const Navbar = () => {
               </div>
             </Link>
           </li>
-          <li>
+          <li onClick={()=>setShowSidebar(false)}>
             <Link to={currentUser ? "/cart" : "/login"}>
               <div className="display-flex align-items">
                 <div className="badge">
@@ -89,7 +91,7 @@ const Navbar = () => {
             </Link>
           </li>
           {currentUser ? (
-            <li>
+            <li onClick={()=>setShowSidebar(false)}>
               <button className="btn btn-secondary" onClick={signout}>
                 Logout
               </button>

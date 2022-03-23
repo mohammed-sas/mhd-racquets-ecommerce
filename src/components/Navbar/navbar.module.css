@@ -52,6 +52,11 @@ body {
 .hamburger-icon {
   display: none;
 }
+.nav-links.nav-links-ecomm.active{
+  transform: translateX(0%);
+  transition: all 0.5s ease-in-out;
+}
+
 @media only screen and (max-width: 900px) {
   .search-bar {
     width: 20rem;
@@ -77,6 +82,7 @@ body {
     left: 0%;
     z-index: 2;
     height: 100%;
+    transform: translateX(-100%);
     background: var(--white);
   }
   .nav-links-ecomm ul{
