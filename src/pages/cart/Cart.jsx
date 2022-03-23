@@ -70,12 +70,12 @@ const Cart = () => {
                 return (
                   <div
                     key={product._id}
-                    className="card-container product-container product-landscape-container"
+                    className={`card-container product-container product-landscape-container ${classes["landscape-mobile-width"]}`}
                   >
                     <div className="card-image-basic product-landscape-image relative-pos">
                       <img src={product.image} alt={product.title} />
                     </div>
-                    <div className="product-landscape-body  bg-purple-50">
+                    <div className={`product-landscape-body  bg-purple-50  ${classes["landscape-card-height"]}`}>
                       <div className="card-heading bg-purple-50">
                         <div className="padding-l-r-16-b-5 heading bg-purple-50">
                           {product.title}

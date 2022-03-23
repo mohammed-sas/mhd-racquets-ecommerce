@@ -55,3 +55,9 @@ aside{
 .position-relative{
     position: relative;
 }
+
+.active{
+    transform: translateY(0%);
+    transition:transform 0.5s ease-in-out;
+}
+
