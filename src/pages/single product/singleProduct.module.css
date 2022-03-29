@@ -85,3 +85,12 @@ td{
     transform: rotate(360deg);
   }
 }
+
+@media only screen and (max-width:600px){
+  .product-typography{
+    width: 100%;
+  }
+  .description-table{
+    width: 100%;
+  }
+}
