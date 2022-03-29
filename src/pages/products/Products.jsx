@@ -134,7 +134,7 @@ const Products = () => {
               <div className="product-price padding-l-r-16-b-5  bg-purple-50">
                 <h2>₹{product.price}</h2>
               </div>
-              <div className={`card-footer-basic product-card-footer ${classes["fluid-y"]} bg-purple-50`}>
+              <div className={`card-footer-basic product-card-footer ${classes["product-ecomm-footer"]} bg-purple-50`}>
                 <button
                   className={`btn btn-secondary ${classes["product-btn"]}`}
                   onClick={() => viewDetailHandler(product._id)}
