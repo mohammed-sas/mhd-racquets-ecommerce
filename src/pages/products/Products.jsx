@@ -109,10 +109,10 @@ const Products = () => {
     <main className={classes["product-page-container"]}>
       <Filters  showFilter={showFilter} setShowFilter={setShowFilter}/>
       <main>
-        {state.loading ? <h2>Loading...</h2> : null}
+        {state.loading ? <span className={classes["loader"]}></span> : null}
         {filteredItems.map((product) => {
           return (
-            <div key={product.id} className="card-container product-container">
+            <div key={product.id} className={`card-container ${classes["card-shadow"]} product-container`}>
               <div className="card-image-basic product-image relative-pos">
                 <img src={product.image} alt="astrox 100 game" />
                 <span className="btn-dismiss">
@@ -136,7 +136,7 @@ const Products = () => {
               </div>
               <div className={`card-footer-basic product-card-footer ${classes["fluid-y"]} bg-purple-50`}>
                 <button
-                  className="btn btn-secondary"
+                  className={`btn btn-secondary ${classes["product-btn"]}`}
                   onClick={() => viewDetailHandler(product._id)}
                 >
                   View Details

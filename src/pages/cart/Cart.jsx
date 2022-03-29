@@ -70,7 +70,7 @@ const Cart = () => {
                 return (
                   <div
                     key={product._id}
-                    className={`card-container product-container product-landscape-container ${classes["landscape-mobile-width"]}`}
+                    className={`card-container product-container product-landscape-container ${classes["card-shadow"]} ${classes["landscape-mobile-width"]}`}
                   >
                     <div className="card-image-basic product-landscape-image relative-pos">
                       <img src={product.image} alt={product.title} />
@@ -91,7 +91,7 @@ const Cart = () => {
                         <label htmlFor="quantity">
                           Quantity:
                           <button
-                            className="btn-qty"
+                            className={classes["btn-qty"]}
                             onClick={() =>
                               qtyHandler(
                                 { type: "decrement" },
@@ -108,7 +108,7 @@ const Cart = () => {
                             placeholder={product.qty}
                           />
                           <button
-                            className="btn-qty"
+                            className={classes["btn-qty"]}
                             onClick={() =>
                               qtyHandler({ type: "increment" }, product._id)
                             }
