@@ -115,7 +115,7 @@ const Products = () => {
             <div key={product.id} className={`card-container ${classes["card-shadow"]} product-container`}>
               <div className="card-image-basic product-image relative-pos">
                 <img src={product.image} alt="astrox 100 game" />
-                <span className="btn-dismiss">
+                <span className={`btn-dismiss ${classes["card-shadow"]}`}>
                   <i
                     className={"fas fa-heart " + isProductWishlisted(product)}
                     onClick={() => wishlistHandler(product)}
