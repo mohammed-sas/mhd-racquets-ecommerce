@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useContext, useReducer, useState } from "react";
+import { createContext, useContext, useReducer } from "react";
 import {cartReducer} from '../reducer/cartReducer.js';
 
 
@@ -64,7 +64,7 @@ const useCartProvider=()=>{
 
 
     
-    return {cartState,addToCart,getCart,removeFromCart,qtyIncDec};
+    return {cartState,addToCart,getCart,removeFromCart,qtyIncDec,cartDispatch};
 }
 
 const CartContext = createContext(null);

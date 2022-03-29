@@ -96,7 +96,7 @@ const SingleProduct = () => {
     <div>
       {loading ? <span className={classes["loader"]}></span> : null}
       {!loading ? (
-        <div className={classes["product-container"]}>
+        <div className={`${classes["product-container"]} ${classes["card-shadow"]}`}>
           <div className={classes["product-img-container"]}>
             <img src={product.image} alt={product.title} />
             <div className={`${classes["flex-y"]} ${classes["padding-2"]}`}>

@@ -109,13 +109,13 @@ const Products = () => {
     <main className={classes["product-page-container"]}>
       <Filters  showFilter={showFilter} setShowFilter={setShowFilter}/>
       <main>
-        {state.loading ? <h2>Loading...</h2> : null}
+        {state.loading ? <span className={classes["loader"]}></span> : null}
         {filteredItems.map((product) => {
           return (
-            <div key={product.id} className="card-container product-container">
+            <div key={product.id} className={`card-container ${classes["card-shadow"]} product-container`}>
               <div className="card-image-basic product-image relative-pos">
                 <img src={product.image} alt="astrox 100 game" />
-                <span className="btn-dismiss">
+                <span className={`btn-dismiss ${classes["card-shadow"]}`}>
                   <i
                     className={"fas fa-heart " + isProductWishlisted(product)}
                     onClick={() => wishlistHandler(product)}
@@ -134,9 +134,9 @@ const Products = () => {
               <div className="product-price padding-l-r-16-b-5  bg-purple-50">
                 <h2>₹{product.price}</h2>
               </div>
-              <div className={`card-footer-basic product-card-footer ${classes["fluid-y"]} bg-purple-50`}>
+              <div className={`card-footer-basic product-card-footer ${classes["product-ecomm-footer"]} bg-purple-50`}>
                 <button
-                  className="btn btn-secondary"
+                  className={`btn btn-secondary ${classes["product-btn"]}`}
                   onClick={() => viewDetailHandler(product._id)}
                 >
                   View Details
