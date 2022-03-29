@@ -459,7 +459,7 @@ export const products = [
   {
     _id: uuid(),
 
-    title: "Power Cushion 37",
+    title: "Power 37",
 
     brand: "Yonex",
 
@@ -511,7 +511,7 @@ export const products = [
   {
     _id: uuid(),
 
-    title: "Power Cushion Aero",
+    title: "Power Aero",
 
     brand: "Yonex",
 
