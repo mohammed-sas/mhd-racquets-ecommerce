@@ -16,6 +16,13 @@ const wishlistReducer=(state,action)=>{
         
         case "GET_WISHLIST":
             return state;
+        
+        case "CLEAR_WISHLIST":
+            return{
+                ...state,
+                wishlist:[],
+                totalItems:0
+            }
         default:
             return state;
     }

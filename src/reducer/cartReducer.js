@@ -20,7 +20,13 @@ const cartReducer = (state,action)=>{
                 totalPrice:action.payload.reduce((acc,curr)=>acc+parseInt(curr.price.replace(/,/g,''))*curr.qty,0),
                 totalItems:action.payload.reduce((acc,curr)=>acc+curr.qty,0)
             }
-            
+        case "CLEAR_CART":
+            return{
+                ...state,
+                cart:[],
+                totalPrice:0,
+                totalItems:0
+            }
         
 
         default:

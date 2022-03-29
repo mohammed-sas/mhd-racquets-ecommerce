@@ -1,6 +1,8 @@
 import axios from "axios";
 import { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useCart } from "./cart-context";
+import { useWishlist } from "./wishlist-context";
 
 const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
@@ -10,6 +12,8 @@ const AuthProvider = ({ children }) => {
 
 const useProvideAuth = () => {
   const [currentUser, setCurrentUser] = useState(null);
+  const {cartDispatch} = useCart();
+  const {wishlistDispatch} = useWishlist();
   const navigate = useNavigate();
   const signup = async (user) => {
     try {
@@ -36,6 +40,8 @@ const useProvideAuth = () => {
   const signout = () => {
     localStorage.setItem("token", null);
     setCurrentUser(null);
+    cartDispatch({type:"CLEAR_CART"});
+    wishlistDispatch({type:"CLEAR_WISHLIST"});
     navigate("/");
   };
   return { currentUser, signup, signin, signout };
