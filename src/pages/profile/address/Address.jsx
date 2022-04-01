@@ -14,7 +14,7 @@ const Address = () => {
           <h3 className={classes["charcoal"]}>Saved Addresses</h3>
           <button className="btn btn-primary" onClick={setShowModal}>Add New Address</button>
         </div>
-        <div className={classes["lists"]}>
+        <div className={styles["lists"]}>
             {
                 addressState.address.map(savedAddress=>{
                     return <AddressCard key={savedAddress._id} address={savedAddress}/>

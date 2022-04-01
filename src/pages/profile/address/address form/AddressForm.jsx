@@ -16,6 +16,7 @@ const AddressForm = ({ setShowModal }) => {
         try{
             e.preventDefault();
             await addAddress(address);
+            setShowModal();
         }catch(error){
             console.log(error);
         }
