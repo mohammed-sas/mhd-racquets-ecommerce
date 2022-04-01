@@ -6,6 +6,7 @@
     border-left: none;
     border-top: none;
     padding: 1rem;
+    overflow-y: scroll;
 }
 
 .address-list-header{
@@ -30,6 +31,11 @@
 }
 .charcoal{
     color: var(--charcoal);
+}
+.lists{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
 @media only screen and (max-width:600px){
