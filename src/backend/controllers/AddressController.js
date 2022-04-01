@@ -38,7 +38,7 @@ export const getAddressHandler = function (schema, request) {
 /**
  * This handler handles adding items to user's address.
  * send POST Request at /api/user/address
- * body contains {product}
+ * body contains {address}
  * */
 
 export const addAddressHandler = function (schema, request) {
@@ -91,7 +91,7 @@ export const addAddressHandler = function (schema, request) {
 
 /**
  * This handler handles removing items to user's address.
- * send DELETE Request at /api/user/address/:productId
+ * send DELETE Request at /api/user/address/:addressId
  * */
 
 export const removeAddressHandler = function (schema, request) {
@@ -141,8 +141,7 @@ export const removeAddressHandler = function (schema, request) {
 
 /**
  * This handler handles adding items to user's address.
- * send POST Request at /api/user/address/:productId
- * body contains {action} (whose 'type' can be increment or decrement)
+ * send POST Request at /api/user/address/:addressId
  * */
 
 export const updateAddressHandler = function (schema, request) {
@@ -163,17 +162,16 @@ export const updateAddressHandler = function (schema, request) {
     }).address;
 
     const {
-      address: { name, street, city, state, country, zipCode, mobile },
+      address: { name, building,state, city, area, pincode, mobile },
     } = JSON.parse(request.requestBody);
 
     userAddress.forEach((address) => {
       if (address._id === addressId) {
         address.name = name;
-        address.street = street;
+        address.building = building;
         address.city = city;
         address.state = state;
-        address.country = country;
-        address.zipCode = zipCode;
+        address.pincode = pincode;
         address.mobile = mobile;
         address.updatedAt = formatDate();
       }

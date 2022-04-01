@@ -50,6 +50,11 @@ const AddressForm = ({ setShowModal }) => {
           <br />{" "}
           <input name="city" onChange={changeHandler} type="text" required />
         </label>
+        <label htmlFor="state">
+          State
+          <br />{" "}
+          <input name="state" onChange={changeHandler} type="text" required />
+        </label>
         <label htmlFor="pincode">
           Pincode
           <br />{" "}

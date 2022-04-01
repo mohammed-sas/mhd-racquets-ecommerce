@@ -57,8 +57,21 @@ const useAddressActions=()=>{
             console.log(error);
         }
     }
+    const updateAddress=async (address)=>{
+        try{
+            const response = await axios.post(`/api/user/address/${address._id}`,{address},auth);
+            if(response.status === 200){
+                setAddressState({
+                    ...addressState,
+                    address:response.data.address
+                })
+            }
+        }catch(error){
+            console.log(error);
+        }
+    }
 
-    return {addressState,getAddress,addAddress,deleteAddress};
+    return {addressState,getAddress,addAddress,deleteAddress,updateAddress};
 }
 
 
