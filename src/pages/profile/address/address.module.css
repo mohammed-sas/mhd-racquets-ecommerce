@@ -28,6 +28,9 @@
     flex-grow: 1;
 
 }
+.charcoal{
+    color: var(--charcoal);
+}
 
 @media only screen and (max-width:600px){
     html{
