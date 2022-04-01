@@ -53,7 +53,7 @@ const Navbar = () => {
           {showSidebar && <li><i class="fas fa-times " onClick={()=>setShowSidebar(false)}></i></li>}
           <li onClick={()=>setShowSidebar(false)}>
             {currentUser ? (
-              `${currentUser.firstName}`
+             <span onClick={()=>navigate('/profile/address')}>{currentUser.firstName}</span>
             ) : (
               <button
                 className="btn btn-primary"

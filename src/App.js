@@ -9,6 +9,7 @@ import MockAPI from "./components/mockman/MockAPI";
 import Wishlist from "./pages/wishlist/Wishlist";
 import SingleProduct from "./pages/single product/SingleProduct";
 import Navbar from "./components/Navbar/Navbar";
+import Address from './pages/profile/address/Address';
 function App() {
   
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/mock-api" element={<MockAPI/>}/>
         <Route path="/wishlist" element={<Wishlist/>}/>
         <Route path="/product/:productId" element={<SingleProduct/>}/>
+        <Route path="/profile/address" element={<Address/>} />
       </Routes>
 
     </div>
