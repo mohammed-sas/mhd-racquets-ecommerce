@@ -10,6 +10,7 @@ import Wishlist from "./pages/wishlist/Wishlist";
 import SingleProduct from "./pages/single product/SingleProduct";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from './pages/profile/Profile';
+import OrderSummary from './pages/order summary/OrderSummary';
 function App() {
   
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/wishlist" element={<Wishlist/>}/>
         <Route path="/product/:productId" element={<SingleProduct/>}/>
         <Route path="/profile/address" element={<Profile/>} />
+        <Route path="/order-summary" element={<OrderSummary/>}/>
       </Routes>
 
     </div>
