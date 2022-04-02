@@ -18,15 +18,26 @@ const OrderSummary = () => {
         <div className={classes["address-container"]}>
           <h3>Delivery Address</h3>
           <div>
-              {selectedAddress ? <MiniAddressCard address={selectedAddress} showInput={!!selectedAddress} /> : null}
-            </div>
+            {selectedAddress ? (
+              <MiniAddressCard
+                address={selectedAddress}
+                showInput={!!selectedAddress}
+              />
+            ) : null}
+          </div>
           <div className={classes["address-header"]}>
-                <h4>Select Address</h4>
+            <h4>Select Address</h4>
             {showAddress ? (
-                <i className="fas fa-chevron-circle-up" onClick={setShowAddress}></i>
-              ) : (
-                <i className="fas fa-chevron-circle-down" onClick={setShowAddress}></i>
-              )}
+              <i
+                className="fas fa-chevron-circle-up"
+                onClick={setShowAddress}
+              ></i>
+            ) : (
+              <i
+                className="fas fa-chevron-circle-down"
+                onClick={setShowAddress}
+              ></i>
+            )}
           </div>
           {showAddress ? (
             <div className={classes["address-lists"]}>
@@ -43,9 +54,10 @@ const OrderSummary = () => {
         </div>
 
         <div className={classes["product-summary"]}>
-          <div>
+          <h3>Product Summary</h3>
+          <div className={classes["product-container"]}>
             {cartState.cart.map((item) => {
-              return <MiniProductCard />;
+              return <MiniProductCard product={item} />;
             })}
           </div>
         </div>

@@ -1,0 +1,21 @@
+img{
+    max-inline-size: 100%;
+}
+.landscape-card{
+    display: flex;
+    flex-direction: row;
+    background: var(--white);
+    border: 1px solid var(--purple-700);
+    padding: 1rem;
+}
+
+.image img{
+    width: 8rem;
+    aspect-ratio: 1/1.5;
+}
+
+.product-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
