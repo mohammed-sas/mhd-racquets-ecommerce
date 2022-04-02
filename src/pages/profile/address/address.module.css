@@ -1,0 +1,52 @@
+.address-list-container{
+    height: 100%;
+    width: 100%;
+    background: var(--white);
+    border:1px solid var(--purple-700);
+    border-left: none;
+    border-top: none;
+    padding: 1rem;
+    overflow-y: scroll;
+}
+
+.address-list-header{
+    display: flex;
+    justify-content: space-between;
+}
+.address-card{
+    box-shadow: 0 3px 10px rgb(0 0 0 /0.2);
+    padding: 1rem;
+}
+.address-card>p{
+    color: var(--charcoal);
+    font-weight: 300;
+    font-size: 1.2rem;
+}
+.fluid-x{
+    padding:1rem 0 ;
+}
+.fluid-x .btn{
+    flex-grow: 1;
+
+}
+.charcoal{
+    color: var(--charcoal);
+}
+.lists{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+@media only screen and (max-width:600px){
+    html{
+        font-size: 50%;
+    }
+
+    .address-list-container{
+      
+        border:1px solid var(--purple-700);
+        border-top: none;
+    }
+}
