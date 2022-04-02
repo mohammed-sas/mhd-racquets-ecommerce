@@ -1,0 +1,31 @@
+.summary-container{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+.container{
+    width: 40%;
+}
+.address-container{
+    background-color: var(--white);
+    border-radius: 1rem;
+    border:1px solid var(--purple-700);
+    padding:1rem;
+}
+.address-lists{
+    overflow-y: scroll;
+    height: 20rem;
+}
+.address-header{
+    background-color: var(--purple-700);
+    color: var(--white);
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.address-header i{
+    cursor: pointer;
+    font-size: 1.4rem;
+    color: var(--white);
+}
