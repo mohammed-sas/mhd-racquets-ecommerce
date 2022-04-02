@@ -15,7 +15,7 @@
     border:1px solid var(--purple-700);
     padding:1rem;
 }
-.address-container h3{
+.address-container>h3{
     background-color: var(--purple-700);
     color: var(--white);
     padding: 1rem;
@@ -51,7 +51,7 @@
     border:1px solid var(--purple-700);
     padding:1rem;
 }
-.product-summary h3{
+.product-summary>h3{
     background-color: var(--purple-700);
     color: var(--white);
     padding: 1rem;
