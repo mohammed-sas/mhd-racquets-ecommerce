@@ -5,21 +5,24 @@ import { useAddress } from "../../context/address-context";
 import { useToggle } from "../../hooks/useToggle";
 import MiniAddressCard from "../../components/mini address card/MiniAddressCard";
 import MiniProductCard from "../../components/mini product card/MiniProductCard";
+import { useState } from "react";
 
 const OrderSummary = () => {
   const { cartState } = useCart();
   const { addressState } = useAddress();
   const [showAddress, setShowAddress] = useToggle(false);
-
+  const [selectedAddress, setSelectedAddress] = useState(null);
   return (
     <main className={classes["summary-container"]}>
       <div className={classes["container"]}>
         <div className={classes["address-container"]}>
+          <h3>Delivery Address</h3>
+          <div>
+              {selectedAddress ? <MiniAddressCard address={selectedAddress} showInput={!!selectedAddress} /> : null}
+            </div>
           <div className={classes["address-header"]}>
-            <h3>
-              Delivery Address
-            </h3>
-              {showAddress ? (
+                <h4>Select Address</h4>
+            {showAddress ? (
                 <i className="fas fa-chevron-circle-up" onClick={setShowAddress}></i>
               ) : (
                 <i className="fas fa-chevron-circle-down" onClick={setShowAddress}></i>
@@ -28,7 +31,12 @@ const OrderSummary = () => {
           {showAddress ? (
             <div className={classes["address-lists"]}>
               {addressState.address.map((address) => {
-                return <MiniAddressCard address={address} />;
+                return (
+                  <MiniAddressCard
+                    address={address}
+                    setSelectedAddress={setSelectedAddress}
+                  />
+                );
               })}
             </div>
           ) : null}
