@@ -91,7 +91,7 @@ const EditAddressForm = ({ address,setShowModal }) => {
             name="pincode"
             defaultValue={address.pincode}
             onChange={changeHandler}
-            type="text"
+            type="number"
             required
           />
         </label>

@@ -59,7 +59,7 @@ const AddressForm = ({ setShowModal }) => {
         <label htmlFor="pincode">
           Pincode
           <br />{" "}
-          <input name="pincode" onChange={changeHandler} type="text" required />
+          <input name="pincode" onChange={changeHandler} type="number" required />
         </label>
         <label htmlFor="mobile">
           Mobile No.
