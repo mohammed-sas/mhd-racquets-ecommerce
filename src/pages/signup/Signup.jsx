@@ -35,7 +35,7 @@ const Signup = () => {
         }
         let status = await signup(user);
             if(status == 201){
-                navigate("/");
+                navigate(-2);
             }
         }catch(error){
             console.log(error);

@@ -34,6 +34,9 @@ form input{
     justify-content: space-between;
     align-items:center;
 }
+.remember-me-container span{
+    font-size: 1.2rem;
+}
 a{
     text-decoration: none;
 }

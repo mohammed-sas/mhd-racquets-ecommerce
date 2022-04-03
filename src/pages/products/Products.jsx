@@ -48,6 +48,7 @@ const Products = () => {
 
       if (!currentUser) {
         navigate("/login");
+        
       } else {
         let result = isProductExist(product._id);
 

@@ -21,7 +21,7 @@ const Login = () => {
       e.preventDefault();
       let status = await signin(user);
       if (status) {
-        navigate("/");
+        navigate(-1);
       }
     } catch (error) {
       console.log(error);
