@@ -40,7 +40,9 @@ main {
 i {
   color: var(--gray-70);
 }
-
+.card-height-50{
+  height:50rem ;
+}
 .product-ecomm-footer {
   flex-direction: column;
   gap: 1rem;
