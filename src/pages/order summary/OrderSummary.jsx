@@ -62,7 +62,7 @@ const OrderSummary = () => {
           </div>
         </div>
       </div>
-      <CartSummary cartState={cartState} />
+      <CartSummary cartState={cartState} orderAddress={selectedAddress} />
     </main>
   );
 };
