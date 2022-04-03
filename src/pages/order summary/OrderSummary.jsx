@@ -6,12 +6,14 @@ import { useToggle } from "../../hooks/useToggle";
 import MiniAddressCard from "../../components/mini address card/MiniAddressCard";
 import MiniProductCard from "../../components/mini product card/MiniProductCard";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const OrderSummary = () => {
   const { cartState } = useCart();
   const { addressState } = useAddress();
   const [showAddress, setShowAddress] = useToggle(false);
   const [selectedAddress, setSelectedAddress] = useState(null);
+  const navigate = useNavigate();
   return (
     <main className={classes["summary-container"]}>
       <div className={classes["container"]}>
@@ -23,7 +25,7 @@ const OrderSummary = () => {
                 address={selectedAddress}
                 showInput={!!selectedAddress}
               />
-            ) : null}
+            ) : <button className="btn btn-primary" onClick={()=>navigate("/profile/address")}>Add Address</button>}
           </div>
           <div className={classes["address-header"]}>
             <h4>Select Address</h4>
