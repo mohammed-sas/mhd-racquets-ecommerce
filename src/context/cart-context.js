@@ -62,9 +62,18 @@ const useCartProvider=()=>{
         }
     }
 
-
+    const deleteCart=async()=>{
+        try{
+            let response = await axios.delete('/api/user/cart',{headers:{
+                authorization:token
+            }})
+            cartDispatch({type:"UPDATE_CART",payload:response.data.cart});
+        }catch(error){
+            console.log(error);
+        }
+    }
     
-    return {cartState,addToCart,getCart,removeFromCart,qtyIncDec,cartDispatch};
+    return {cartState,addToCart,getCart,removeFromCart,qtyIncDec,cartDispatch,deleteCart};
 }
 
 const CartContext = createContext(null);

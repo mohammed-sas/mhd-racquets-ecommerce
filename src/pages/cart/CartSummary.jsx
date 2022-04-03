@@ -1,12 +1,16 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import classes from "./cart.module.css";
-import logo from '../../assets/ecomm-logo.png'
+import logo from "../../assets/ecomm-logo.png";
 import { useCart } from "../../context/cart-context";
-
-const CartSummary = ({ cartState,orderAddress }) => {
+import InfoAlert from "../../components/Alerts/Info/InfoAlert";
+import { useToggle } from "../../hooks/useToggle";
+import { useState } from "react";
+const CartSummary = ({ cartState, orderAddress }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const {cartDispatch} = useCart();
+  const { deleteCart } = useCart();
+  const [showInfo, setShowInfo] = useToggle(false);
+  const [alertMessage, setAlertMessage] = useState("");
   const loadScript = async (url) => {
     return new Promise((resolve) => {
       const script = document.createElement("script");
@@ -22,27 +26,29 @@ const CartSummary = ({ cartState,orderAddress }) => {
       document.body.appendChild(script);
     });
   };
-  const showRazorpay=async ()=>{
-    try{
-      const response = await loadScript("https://checkout.razorpay.com/v1/checkout.js");
-      if(!response){
+  const showRazorpay = async () => {
+    try {
+      const response = await loadScript(
+        "https://checkout.razorpay.com/v1/checkout.js"
+      );
+      if (!response) {
         return;
       }
       const options = {
         key: "rzp_test_gilfWDuN1QoK9R",
-        amount: (cartState.totalPrice+299) * 100,
+        amount: (cartState.totalPrice + 299) * 100,
         currency: "INR",
         name: "MHD Racquets Store",
         description: "Thank you for shopping with us",
         image: logo,
-        handler: function (response) {
+        handler: function  (response) {
           const orderData = {
             products: [...cartState.cart],
-            amount: `${cartState.totalPrice+299}`,
+            amount: `${cartState.totalPrice + 299}`,
             paymentId: response.razorpay_payment_id,
             delivery: orderAddress,
           };
-          cartDispatch({type:"CLEAR_CART"});
+           deleteCart();
         },
         prefill: {
           name: `${orderAddress.name}`,
@@ -54,13 +60,20 @@ const CartSummary = ({ cartState,orderAddress }) => {
       };
       const paymentObject = new window.Razorpay(options);
       paymentObject.open();
-    }catch(error){
+    } catch (error) {
       console.log(error);
     }
-  }
-  const checkoutHandler=()=>{
+  };
+  const checkoutHandler = () => {
+    if (!orderAddress) {
+      setAlertMessage("Kindly select delivery address");
+      setShowInfo();
+      setTimeout(()=>{
+        navigate('/profile/address');
+      },2000)
+    }
     showRazorpay();
-  }
+  };
   return (
     <div className={classes["cart-summary-container"]}>
       <h2>Price Details</h2>
@@ -96,8 +109,11 @@ const CartSummary = ({ cartState,orderAddress }) => {
           Place Order
         </button>
       ) : (
-        <button className="btn btn-primary" onClick={checkoutHandler}>Checkout</button>
+        <button className="btn btn-primary" onClick={checkoutHandler}>
+          Checkout
+        </button>
       )}
+      {showInfo ? <InfoAlert message={alertMessage} /> : null}
     </div>
   );
 };
