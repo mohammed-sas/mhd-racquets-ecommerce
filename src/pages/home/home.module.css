@@ -94,7 +94,9 @@ img{
 .padding-1rem{
     padding: 1rem;
 }
-
+.padding-0{
+    padding: 0;
+}
 
 @media only screen and (max-width:900px) {
     html{

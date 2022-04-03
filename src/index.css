@@ -20,6 +20,9 @@ body {
 .bg-purple-50{
   background: var(--purple-50);
 }
+.bg-purple-600{
+  background: var(--purple-600);
+}
 
 .btn{
   margin: 0;
