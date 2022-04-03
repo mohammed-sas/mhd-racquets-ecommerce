@@ -27,6 +27,16 @@ const Login = () => {
       console.log(error);
     }
   };
+  const guestHandler = async () => {
+    try {
+      let status = await signin(user);
+      if (status) {
+        navigate(-1);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div>
       <main className="login-container">
@@ -42,7 +52,6 @@ const Login = () => {
                 name="email"
                 type="email"
                 placeholder="abc@neog.com"
-                defaultValue="mohammed@gmail.com"
               />
             </label>
 
@@ -54,7 +63,6 @@ const Login = () => {
                 name="password"
                 onChange={handleChange}
                 placeholder="*******"
-                defaultValue="password"
               />
             </label>
 
@@ -67,6 +75,7 @@ const Login = () => {
               </span>
             </div>
             <input type="submit" value="Login" className="btn btn-primary" />
+            <button  className="btn btn-secondary" onClick={guestHandler}>Login as Guest</button>
             <div>
               <p className="centered-text">
                 <Link to="/signup">
