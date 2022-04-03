@@ -68,9 +68,6 @@ const CartSummary = ({ cartState, orderAddress }) => {
     if (!orderAddress) {
       setAlertMessage("Kindly select delivery address");
       setShowInfo();
-      setTimeout(()=>{
-        navigate('/profile/address');
-      },2000)
     }
     showRazorpay();
   };
