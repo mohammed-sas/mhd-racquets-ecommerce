@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import classes from '../navbar/navbar.module.css'
+import classes from '../Navbar/navbar.module.css'
 const Search = ({list}) => {
     const navigate = useNavigate();
     return (
