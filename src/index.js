@@ -3,12 +3,14 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
-import { FilterProvider } from "./context/filter-context";
-import { AuthProvider } from "./context/auth-context";
+import {
+  FilterProvider,
+  AuthProvider,
+  CartProvider,
+  WishlistProvider,
+  AddressProvider,
+} from "./context";
 import { BrowserRouter } from "react-router-dom";
-import { CartProvider } from "./context/cart-context";
-import { WishlistProvider } from "./context/wishlist-context";
-import { AddressProvider } from "./context/address-context";
 
 // Call make Server
 makeServer();

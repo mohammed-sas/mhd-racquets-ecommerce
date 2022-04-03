@@ -1,6 +1,6 @@
 import classes from './profile.module.css';
 import Address from './address/Address'
-import {useAuth} from '../../context/auth-context'
+import {useAuth} from '../../context'
 const Profile = () => {
   const {currentUser} = useAuth();
   return (

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useAddress } from '../../../../context/address-context';
+import { useAddress } from '../../../../context';
 import { useToggle } from '../../../../hooks/useToggle';
 import EditAddressForm from '../edit form/EditAddressForm'
 import classes from '../address.module.css';

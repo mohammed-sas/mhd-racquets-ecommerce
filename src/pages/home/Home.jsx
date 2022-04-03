@@ -5,7 +5,7 @@ import racquet3 from "../../assets/rq-3.webp";
 import stringImage from "../../assets/string.webp";
 import shuttle from "../../assets/shuttle.webp";
 import { useNavigate } from "react-router-dom";
-import { useFilter } from "../../context/filter-context.js";
+import { useFilter } from "../../context";
 import Rating from "../../components/rating/Rating";
 
 const Home = () => {

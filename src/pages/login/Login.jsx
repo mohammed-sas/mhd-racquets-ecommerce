@@ -1,7 +1,7 @@
 import "./login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useAuth } from "../../context/auth-context";
+import { useAuth } from "../../context";
 const Login = () => {
   const { signin } = useAuth();
   const navigate = useNavigate();

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useCart } from "../../context/cart-context";
+import { useCart } from "../../context";
 import classes from "./cart.module.css";
 import CartSummary from "./CartSummary";
 import  InfoAlert from '../../components/Alerts/Info/InfoAlert'

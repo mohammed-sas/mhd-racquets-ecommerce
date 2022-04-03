@@ -1,7 +1,6 @@
 import {useState} from 'react'
-import { useWishlist } from "../../context/wishlist-context";
 import classes from "./wishlist.module.css";
-import {useCart} from '../../context/cart-context';
+import {useCart,useWishlist} from '../../context';
 import {useNavigate} from 'react-router-dom'
 import  InfoAlert from '../../components/Alerts/Info/InfoAlert'
 import SuccessAlert from '../../components/Alerts/Success/SuccessAlert';

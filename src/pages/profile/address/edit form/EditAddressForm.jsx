@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAddress } from "../../../../context/address-context";
+import { useAddress } from "../../../../context";
 import classes from "../address form/addressForm.module.css";
 
 const EditAddressForm = ({ address,setShowModal }) => {
