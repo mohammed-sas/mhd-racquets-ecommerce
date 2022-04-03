@@ -6,9 +6,10 @@ const Login = () => {
   const { signin } = useAuth();
   const navigate = useNavigate();
   const [user, setUser] = useState({
-    email: "mohammed@gmail.com",
-    password: "password",
+    email: "",
+    password: "",
   });
+ 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUser({
@@ -29,7 +30,11 @@ const Login = () => {
   };
   const guestHandler = async () => {
     try {
-      let status = await signin(user);
+      let guestUser={
+        email: "mohammed@gmail.com",
+        password: "password",
+      };
+      let status = await signin(guestUser);
       if (status) {
         navigate(-1);
       }
