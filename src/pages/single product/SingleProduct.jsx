@@ -2,10 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import classes from "./singleProduct.module.css";
 import axios from "axios";
-import Rating from "../../components/rating/Rating";
 import { useWishlist,useAuth,useCart } from "../../context";
-import SuccessAlert from "../../components/Alerts/Success/SuccessAlert";
-import InfoAlert from "../../components/Alerts/Info/InfoAlert";
+import {SuccessAlert,InfoAlert,Rating} from "../../components";
 const SingleProduct = () => {
   const { productId } = useParams();
   const navigate = useNavigate();

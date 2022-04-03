@@ -8,7 +8,7 @@ import Products from "./pages/products/Products";
 import MockAPI from "./components/mockman/MockAPI";
 import Wishlist from "./pages/wishlist/Wishlist";
 import SingleProduct from "./pages/single product/SingleProduct";
-import Navbar from "./components/Navbar/Navbar";
+import {Navbar} from "./components";
 import Profile from './pages/profile/Profile';
 import OrderSummary from './pages/order summary/OrderSummary';
 function App() {

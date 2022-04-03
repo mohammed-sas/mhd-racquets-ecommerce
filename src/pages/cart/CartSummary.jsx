@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import classes from "./cart.module.css";
 import logo from "../../assets/ecomm-logo.png";
 import { useCart } from "../../context";
-import InfoAlert from "../../components/Alerts/Info/InfoAlert";
+import {InfoAlert} from "../../components";
 import { useToggle } from "../../hooks/useToggle";
 import { useState } from "react";
 const CartSummary = ({ cartState, orderAddress }) => {

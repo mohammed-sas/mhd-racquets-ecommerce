@@ -6,7 +6,7 @@ import stringImage from "../../assets/string.webp";
 import shuttle from "../../assets/shuttle.webp";
 import { useNavigate } from "react-router-dom";
 import { useFilter } from "../../context";
-import Rating from "../../components/rating/Rating";
+import {Rating} from "../../components";
 
 const Home = () => {
   const navigate = useNavigate();

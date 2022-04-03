@@ -1,10 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../context";
 import classes from "./cart.module.css";
 import CartSummary from "./CartSummary";
-import  InfoAlert from '../../components/Alerts/Info/InfoAlert'
-import SuccessAlert from '../../components/Alerts/Success/SuccessAlert';
+import  {InfoAlert,SuccessAlert} from '../../components'
 const Cart = () => {
   const [loading, setLoading] = useState(false);
   const { cartState, getCart, removeFromCart, qtyIncDec } = useCart();

@@ -10,9 +10,9 @@ import {
 import classes from "./products.module.css";
 import { useFilter,useAuth,useCart,useWishlist } from "../../context";
 import { useNavigate } from "react-router-dom";
-import SuccessAlert from "../../components/Alerts/Success/SuccessAlert";
-import InfoAlert from "../../components/Alerts/Info/InfoAlert";
+import {SuccessAlert,InfoAlert}from "../../components";
 import { useState } from "react";
+
 
 const Products = () => {
   const { state } = useFilter();
