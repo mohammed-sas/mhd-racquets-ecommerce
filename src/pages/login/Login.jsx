@@ -1,14 +1,15 @@
 import "./login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useAuth } from "../../context/auth-context";
+import { useAuth } from "../../context";
 const Login = () => {
   const { signin } = useAuth();
   const navigate = useNavigate();
   const [user, setUser] = useState({
-    email: "mohammed@gmail.com",
-    password: "password",
+    email: "",
+    password: "",
   });
+ 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUser({
@@ -21,7 +22,21 @@ const Login = () => {
       e.preventDefault();
       let status = await signin(user);
       if (status) {
-        navigate("/");
+        navigate(-1);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const guestHandler = async () => {
+    try {
+      let guestUser={
+        email: "mohammed@gmail.com",
+        password: "password",
+      };
+      let status = await signin(guestUser);
+      if (status) {
+        navigate(-1);
       }
     } catch (error) {
       console.log(error);
@@ -42,7 +57,6 @@ const Login = () => {
                 name="email"
                 type="email"
                 placeholder="abc@neog.com"
-                defaultValue="mohammed@gmail.com"
               />
             </label>
 
@@ -54,7 +68,6 @@ const Login = () => {
                 name="password"
                 onChange={handleChange}
                 placeholder="*******"
-                defaultValue="password"
               />
             </label>
 
@@ -67,6 +80,7 @@ const Login = () => {
               </span>
             </div>
             <input type="submit" value="Login" className="btn btn-primary" />
+            <button  className="btn btn-secondary" onClick={guestHandler}>Login as Guest</button>
             <div>
               <p className="centered-text">
                 <Link to="/signup">

@@ -3,7 +3,7 @@ import styles from './address.module.css';
 import AddressCard from './address card/AddressCard';
 import AddressForm from './address form/AddressForm';
 import { useToggle } from '../../../hooks/useToggle';
-import { useAddress } from '../../../context/address-context';
+import { useAddress } from '../../../context';
 const Address = () => {
     const [showModal,setShowModal] = useToggle(false);
     const {addressState} = useAddress();

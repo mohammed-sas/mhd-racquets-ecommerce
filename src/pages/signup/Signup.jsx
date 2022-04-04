@@ -3,7 +3,7 @@ import './signup.css'
 import {useState} from 'react';
 import {useToggle} from '../../hooks/useToggle';
 import { useNavigate } from 'react-router';
-import { useAuth } from '../../context/auth-context'
+import { useAuth } from '../../context'
 import {Link} from 'react-router-dom'
 const Signup = () => {
     const [showpass,setShowpass] = useToggle(false);
@@ -35,7 +35,7 @@ const Signup = () => {
         }
         let status = await signup(user);
             if(status == 201){
-                navigate("/");
+                navigate(-2);
             }
         }catch(error){
             console.log(error);

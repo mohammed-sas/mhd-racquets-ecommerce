@@ -1,11 +1,8 @@
 import classes from "./navbar.module.css";
 import logo from "../../assets/ecomm-logo.png";
 import { useNavigate } from "react-router";
-import { useAuth } from "../../context/auth-context";
 import { Link } from "react-router-dom";
-import { useFilter } from "../../context/filter-context";
-import { useCart } from "../../context/cart-context";
-import { useWishlist } from "../../context/wishlist-context";
+import { useWishlist,useCart,useFilter,useAuth } from "../../context";
 import { useState } from "react";
 import Search from "../search/Search";
 const Navbar = () => {

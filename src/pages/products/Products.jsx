@@ -7,16 +7,12 @@ import {
   getMaxPrice,
   getCategoryWise,
 } from "../../utils/util";
-
 import classes from "./products.module.css";
-import { useFilter } from "../../context/filter-context";
+import { useFilter,useAuth,useCart,useWishlist } from "../../context";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/auth-context";
-import { useCart } from "../../context/cart-context";
-import { useWishlist } from "../../context/wishlist-context";
-import SuccessAlert from "../../components/Alerts/Success/SuccessAlert";
-import InfoAlert from "../../components/Alerts/Info/InfoAlert";
+import {SuccessAlert,InfoAlert}from "../../components";
 import { useState } from "react";
+
 
 const Products = () => {
   const { state } = useFilter();
@@ -48,6 +44,7 @@ const Products = () => {
 
       if (!currentUser) {
         navigate("/login");
+        
       } else {
         let result = isProductExist(product._id);
 

@@ -1,10 +1,8 @@
 import classes from "./orderSummary.module.css";
 import CartSummary from "../cart/CartSummary";
-import { useCart } from "../../context/cart-context";
-import { useAddress } from "../../context/address-context";
+import { useCart,useAddress } from "../../context";
 import { useToggle } from "../../hooks/useToggle";
-import MiniAddressCard from "../../components/mini address card/MiniAddressCard";
-import MiniProductCard from "../../components/mini product card/MiniProductCard";
+import {MiniAddressCard,MiniProductCard} from "../../components";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 

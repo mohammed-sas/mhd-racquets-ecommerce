@@ -2,12 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import classes from "./singleProduct.module.css";
 import axios from "axios";
-import Rating from "../../components/rating/Rating";
-import { useWishlist } from "../../context/wishlist-context";
-import { useAuth } from "../../context/auth-context";
-import { useCart } from "../../context/cart-context";
-import SuccessAlert from "../../components/Alerts/Success/SuccessAlert";
-import InfoAlert from "../../components/Alerts/Info/InfoAlert";
+import { useWishlist,useAuth,useCart } from "../../context";
+import {SuccessAlert,InfoAlert,Rating} from "../../components";
 const SingleProduct = () => {
   const { productId } = useParams();
   const navigate = useNavigate();
