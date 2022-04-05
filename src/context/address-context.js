@@ -1,5 +1,6 @@
 import axios from "axios";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useReducer } from "react";
+import {addressReducer} from '../reducer/addressReducer';
 
 const AddressContext = createContext(null);
 
@@ -11,7 +12,7 @@ const AddressProvider=({children})=>{
 }
 
 const useAddressActions=()=>{
-    const [addressState,setAddressState] = useState({address:[]});
+    const [addressState,addressDispatch] = useReducer(addressReducer,{address:[]});
     const token = localStorage.getItem("token");
     const auth ={
         headers:{
@@ -22,10 +23,7 @@ const useAddressActions=()=>{
         try{
             const response = await axios.get('/api/user/address',auth);
             if(response.status === 200){
-                setAddressState({
-                    ...addressState,
-                    address : response.data.address
-                })
+                addressDispatch({type:"UPDATE",payload:response.data.address});
             }
         }catch(error){
             console.log(error);
@@ -35,10 +33,7 @@ const useAddressActions=()=>{
         try{
             const response = await axios.post('/api/user/address',{address},auth);
             if(response.status === 201){
-                setAddressState({
-                    ...addressState,
-                    address:response.data.address
-                })
+                addressDispatch({type:"ADD",payload:response.data.address});
             }
         }catch(error){  
             console.log(error);
@@ -48,10 +43,7 @@ const useAddressActions=()=>{
         try{
             const response = await axios.delete(`/api/user/address/${id}`,auth);
             if(response.status === 200){
-                setAddressState({
-                    ...addressState,
-                    address:response.data.address
-                })
+                addressDispatch({type:"DELETE",payload:response.data.address});
             }
         }catch(error){
             console.log(error);
@@ -61,10 +53,7 @@ const useAddressActions=()=>{
         try{
             const response = await axios.post(`/api/user/address/${address._id}`,{address},auth);
             if(response.status === 200){
-                setAddressState({
-                    ...addressState,
-                    address:response.data.address
-                })
+                addressDispatch({type:"UPDATE",payload:response.data.address});
             }
         }catch(error){
             console.log(error);
