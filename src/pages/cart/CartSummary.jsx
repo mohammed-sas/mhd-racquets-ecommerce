@@ -5,12 +5,13 @@ import { useCart } from "../../context";
 import {InfoAlert} from "../../components";
 import { useToggle } from "../../hooks/useToggle";
 import { useState } from "react";
-const CartSummary = ({ cartState, orderAddress }) => {
+const CartSummary = ({ cartState, orderAddress,discount,setDiscount }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { deleteCart } = useCart();
   const [showInfo, setShowInfo] = useToggle(false);
   const [alertMessage, setAlertMessage] = useState("");
+  
   const loadScript = async (url) => {
     return new Promise((resolve) => {
       const script = document.createElement("script");
@@ -71,6 +72,9 @@ const CartSummary = ({ cartState, orderAddress }) => {
     }
     showRazorpay();
   };
+  const discountHandler=(e)=>{
+      setDiscount(e.target.value);
+  }
   return (
     <div className={classes["cart-summary-container"]}>
       <h2>Price Details</h2>
@@ -80,9 +84,18 @@ const CartSummary = ({ cartState, orderAddress }) => {
           <span>Price ({cartState.totalItems} item)</span>
           <span>₹{cartState.totalPrice}</span>
         </div>
+        <div className={classes["coupon-container"]}>
+        <h3>Apply coupon</h3>
+        <select name="coupon" onChange={discountHandler}>
+          <option value="0" selected={discount === 0}></option>
+          <option value="100" disabled={cartState.totalPrice<=5000}>₹100/- off orders above ₹5,000</option>
+          <option value="500" disabled={cartState.totalPrice <= 10000} >₹500/- off for orders above ₹10,000</option>
+          <option value="1000"disabled={cartState.totalPrice <=15000} >₹1,000/- for orders above ₹15,000</option>
+        </select>
+        </div>
         <div>
           <span>Discount</span>
-          <span>₹0</span>
+          <span>₹{discount}</span>
         </div>
         <div>
           <span>Delivery Charges</span>
@@ -92,7 +105,7 @@ const CartSummary = ({ cartState, orderAddress }) => {
         <div>
           <h2>Total Amount</h2>
           <h2>
-            ₹{cartState.totalPrice !== 0 ? cartState.totalPrice + 299 : 0}
+            ₹{cartState.totalPrice !== 0 ? (cartState.totalPrice + 299- discount ): 0}
           </h2>
         </div>
       </div>
