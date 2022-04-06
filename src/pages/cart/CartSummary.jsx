@@ -88,9 +88,9 @@ const CartSummary = ({ cartState, orderAddress,discount,setDiscount }) => {
         <h3>Apply coupon</h3>
         <select name="coupon" onChange={discountHandler}>
           <option value="0" selected={discount === 0}></option>
-          <option value="100" disabled={cartState.totalPrice<=5000}>₹100/- off orders above ₹5,000</option>
-          <option value="500" disabled={cartState.totalPrice <= 10000} >₹500/- off for orders above ₹10,000</option>
-          <option value="1000"disabled={cartState.totalPrice <=15000} >₹1,000/- for orders above ₹15,000</option>
+          <option value="100" disabled={cartState.totalPrice<=5000}>₹100/- off above ₹5,000</option>
+          <option value="500" disabled={cartState.totalPrice <= 10000} >₹500/- off above ₹10,000</option>
+          <option value="1000"disabled={cartState.totalPrice <=15000} >₹1,000/- off above ₹15,000</option>
         </select>
         </div>
         <div>
