@@ -27,8 +27,8 @@ A all-in-one store where you could find accessories related to Badmintion Sport
 14.Search Products  
 
 ## Demo
-![ecomm-one](https://user-images.githubusercontent.com/89216938/161958981-efc3ecad-8218-489e-8f78-ff6c08e59f52.gif)
-![ecomm-two](https://user-images.githubusercontent.com/89216938/161959119-2ff2c308-a6b7-4e9d-a6dc-9f492a918047.gif)
+![ecomm-one](https://user-images.githubusercontent.com/89216938/161958981-efc3ecad-8218-489e-8f78-ff6c08e59f52.gif)  
+![ecomm-two](https://user-images.githubusercontent.com/89216938/161959119-2ff2c308-a6b7-4e9d-a6dc-9f492a918047.gif)  
 ![ecomm-three](https://user-images.githubusercontent.com/89216938/161959132-b2e508df-7ce1-4d52-a772-a162265ae257.gif)
 
 ## Authors
