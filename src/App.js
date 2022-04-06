@@ -26,7 +26,7 @@ function App() {
         <Route path="/mock-api" element={<Mockman />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/product/:productId" element={<SingleProduct />} />
-        <Route path="/profile/address" element={<Profile />} />
+        <Route path="/profile/*" element={<Profile />} />
         <Route path="/order-summary" element={<OrderSummary />} />
       </Routes>
     </div>
