@@ -1,8 +1,10 @@
-import classes from './profile.module.css';
-import Address from './address/Address'
-import {useAuth} from '../../context'
+import classes from "./profile.module.css";
+import Address from "./address/Address";
+import { useAuth } from "../../context";
+import ProfileDetail from "./detail/ProfileDetail";
+import { Routes,Route,Link, BrowserRouter } from "react-router-dom";
 const Profile = () => {
-  const {currentUser} = useAuth();
+  const { currentUser } = useAuth();
   return (
     <main className={classes["profile-container"]}>
       <div className={classes["profile-header"]}>
@@ -15,12 +17,22 @@ const Profile = () => {
       </div>
       <div className={classes["profile-aside"]}>
         <div className={classes["profile-tabs"]}>
-          <span className={`${classes["tab-item"]} ${classes["charcaol"]} ${classes["active"]}`}>
-            <a href="">Addresses</a>
+          <span
+            className={`${classes["tab-item"]} ${classes["charcaol"]} ${classes["active"]}`}
+          >
+            <Link to="/profile/address">Addresses</Link>
+          </span>
+          <span
+            className={`${classes["tab-item"]} ${classes["charcaol"]} ${classes["active"]}`}
+          >
+            <Link to="/profile/detail">Profile Detail</Link>
           </span>
         </div>
       </div>
-        <Address/>
+      <Routes>
+        <Route path="address" element={<Address />} />
+        <Route path="detail" element={<ProfileDetail />} />
+      </Routes>
     </main>
   );
 };
