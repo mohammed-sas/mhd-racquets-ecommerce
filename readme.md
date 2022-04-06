@@ -1,7 +1,7 @@
 
 # MHD Racquets Store
 
-A all-in-one store where you could find accessories related to Badmintion Sport
+A all-in-one store where you could find accessories related to Badmintion Sport.Live Site :[MHD Racquets Store](https://mhd-racquets-store.netlify.app/)
 ## Tech Stack
 1.React   
 2.React context API +  useReducer hook  
