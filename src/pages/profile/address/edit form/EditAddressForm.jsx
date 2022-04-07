@@ -30,8 +30,7 @@ const EditAddressForm = ({ address,setShowModal }) => {
         ></i>
         <h2>Address Form</h2>
         <label htmlFor="name">
-          Name
-          <br />{" "}
+          <span>Name</span>
           <input
             name="name"
             defaultValue={address.name}
@@ -41,8 +40,7 @@ const EditAddressForm = ({ address,setShowModal }) => {
           />
         </label>
         <label htmlFor="building">
-          Building Name and No.
-          <br />{" "}
+          <span>Building Name and No.</span>
           <input
             name="building"
             defaultValue={address.building}
@@ -52,8 +50,7 @@ const EditAddressForm = ({ address,setShowModal }) => {
           />
         </label>
         <label htmlFor="area">
-          Area
-          <br />{" "}
+          <span>Area</span>
           <input
             name="area"
             defaultValue={address.area}
@@ -63,8 +60,7 @@ const EditAddressForm = ({ address,setShowModal }) => {
           />
         </label>
         <label htmlFor="city">
-          City
-          <br />{" "}
+          <span>City</span>
           <input
             name="city"
             defaultValue={address.city}
@@ -74,8 +70,7 @@ const EditAddressForm = ({ address,setShowModal }) => {
           />
         </label>
         <label htmlFor="state">
-          State
-          <br />{" "}
+          <span>State</span>
           <input
             name="state"
             defaultValue={address.city}
@@ -85,8 +80,7 @@ const EditAddressForm = ({ address,setShowModal }) => {
           />
         </label>
         <label htmlFor="pincode">
-          Pincode
-          <br />{" "}
+          <span>Pincode</span>
           <input
             name="pincode"
             defaultValue={address.pincode}
@@ -96,8 +90,7 @@ const EditAddressForm = ({ address,setShowModal }) => {
           />
         </label>
         <label htmlFor="mobile">
-          Mobile No.
-          <br />{" "}
+          <span>Mobile No.</span>
           <input
             name="mobile"
             defaultValue={address.mobile}

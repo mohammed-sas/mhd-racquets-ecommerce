@@ -27,13 +27,11 @@ const AddressForm = ({ setShowModal }) => {
         <i className={`${classes["close-btn"]} fas fa-times`} onClick={setShowModal}></i>
         <h2>Address Form</h2>
         <label htmlFor="name">
-          Name
-          <br />{" "}
+          <span>Name</span>
           <input name="name" onChange={changeHandler} type="text" required />
         </label>
         <label htmlFor="building">
-          Building Name and No.
-          <br />{" "}
+          <span>Building Name and No.</span>
           <input
             name="building"
             onChange={changeHandler}
@@ -42,28 +40,23 @@ const AddressForm = ({ setShowModal }) => {
           />
         </label>
         <label htmlFor="area">
-          Area
-          <br />{" "}
+          <span>Area</span>
           <input name="area" onChange={changeHandler} type="text" required />
         </label>
         <label htmlFor="city">
-          City
-          <br />{" "}
+          <span>City</span>
           <input name="city" onChange={changeHandler} type="text" required />
         </label>
         <label htmlFor="state">
-          State
-          <br />{" "}
+          <span>State</span>
           <input name="state" onChange={changeHandler} type="text" required />
         </label>
         <label htmlFor="pincode">
-          Pincode
-          <br />{" "}
+          <span>Pincode</span>
           <input name="pincode" onChange={changeHandler} type="number" required />
         </label>
         <label htmlFor="mobile">
-          Mobile No.
-          <br />{" "}
+          <span>Mobile No.</span>
           <input
             name="mobile"
             onChange={changeHandler}
