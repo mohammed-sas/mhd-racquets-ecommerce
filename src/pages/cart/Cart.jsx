@@ -6,12 +6,11 @@ import CartSummary from "./CartSummary";
 import  {InfoAlert,SuccessAlert} from '../../components'
 const Cart = () => {
   const [loading, setLoading] = useState(false);
-  const { cartState, getCart, removeFromCart, qtyIncDec } = useCart();
+  const { cartState, getCart, removeFromCart, qtyIncDec,cartDispatch } = useCart();
   const navigate = useNavigate();
   const [apiCalled,setApiCalled] = useState(false);
   const [processing,setProcessing] = useState(false);
   const [alertMessage,setAlertMessage] = useState("");
-  const [discount,setDiscount] = useState(0);
   useEffect(() => {
     const populateCart = async () => {
       try {
@@ -31,7 +30,7 @@ const Cart = () => {
       setProcessing(true);
       setAlertMessage("removing from cart");
       await removeFromCart(id);
-      setDiscount(0);
+      cartDispatch({type:"DISCOUNT",payload:0});
       setAlertMessage("removed from cart");
       setProcessing(false);
       if (cartState.cart.length === 1) {
@@ -131,7 +130,7 @@ const Cart = () => {
                 );
               })}
             </div>
-            {cartState.cart.length !== 0 ?  <CartSummary cartState={cartState} discount={discount} setDiscount={setDiscount} /> : null}
+            {cartState.cart.length !== 0 ?  <CartSummary cartState={cartState}  /> : null}
           </div>
         )}
        {cartState.cart.length===0?  <div className={classes["display-flex-center"]}>

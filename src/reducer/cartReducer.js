@@ -8,7 +8,8 @@ const cartReducer = (state,action)=>{
                 ...state,
                 cart:[...action.payload],
                 totalPrice:action.payload.reduce((acc,curr)=>acc+parseInt(curr.price.replace(/,/g,''))*curr.qty,0),
-                totalItems:action.payload.reduce((acc,curr)=>acc+curr.qty,0)
+                totalItems:action.payload.reduce((acc,curr)=>acc+curr.qty,0),
+                discount:0,
             };
         case "GET_CART":
             return state;
@@ -18,14 +19,21 @@ const cartReducer = (state,action)=>{
                 ...state,
                 cart:[...action.payload],
                 totalPrice:action.payload.reduce((acc,curr)=>acc+parseInt(curr.price.replace(/,/g,''))*curr.qty,0),
-                totalItems:action.payload.reduce((acc,curr)=>acc+curr.qty,0)
+                totalItems:action.payload.reduce((acc,curr)=>acc+curr.qty,0),
+                discount:0,
             }
         case "CLEAR_CART":
             return{
                 ...state,
                 cart:[],
                 totalPrice:0,
-                totalItems:0
+                totalItems:0,
+                discount:0,
+            }
+        case "DISCOUNT":
+            return{
+                ...state,
+                discount:Number(action.payload)
             }
         
 

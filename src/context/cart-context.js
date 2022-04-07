@@ -11,6 +11,7 @@ let cartInitialState={
     cart:[],
     totalPrice:0,
     totalItems:0,
+    discount:0
 }
 
 const useCartProvider=()=>{
