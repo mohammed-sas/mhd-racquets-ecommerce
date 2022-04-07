@@ -34,7 +34,9 @@ const Login = () => {
         email: "mohammed@gmail.com",
         password: "password",
       };
-       await signin(guestUser);
+      let status= await signin(guestUser);
+       if(status===200)
+      navigate(location?.state?.from?.pathname || -1, { replace: true });
     } catch (error) {
       console.log(error);
     }
