@@ -1,10 +1,11 @@
 import "./login.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../../context";
 const Login = () => {
   const { signin } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -20,7 +21,9 @@ const Login = () => {
   const submitHandler = async (e) => {
     try {
       e.preventDefault();
-      await signin(user);
+      let status =await signin(user);
+      if(status===200)
+      navigate(location?.state?.from?.pathname || -1, { replace: true });
     } catch (error) {
       console.log(error);
     }
@@ -31,10 +34,7 @@ const Login = () => {
         email: "mohammed@gmail.com",
         password: "password",
       };
-      let status = await signin(guestUser);
-      if (status) {
-        navigate(-1);
-      }
+       await signin(guestUser);
     } catch (error) {
       console.log(error);
     }
