@@ -23,8 +23,9 @@ A all-in-one store where you could find accessories related to Badmintion Sport.
 10.User address management  
 11.Loading and alerts based on user actions  
 12.Payment Integration  
-13.Single product page  
-14.Search Products  
+13.Coupon  
+14.Single product page  
+15.Search Products  
 
 ## Demo
 ![ecomm-1](https://user-images.githubusercontent.com/89216938/161959662-00aedd8d-4c01-436b-a460-fea8b34a263b.gif)  
