@@ -12,6 +12,7 @@ import {
   OrderSummary,
   Profile,
   Signup,
+  NotFound
 } from "./pages";
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/product/:productId" element={<SingleProduct />} />
         <Route path="/profile/*" element={<Profile />} />
         <Route path="/order-summary" element={<OrderSummary />} />
+        <Route path="*" element={<NotFound/>}/>
       </Routes>
     </div>
   );

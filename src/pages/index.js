@@ -7,6 +7,7 @@ import SingleProduct from "./single product/SingleProduct";
 import OrderSummary from "./order summary/OrderSummary";
 import Profile from "./profile/Profile";
 import Signup from "./signup/Signup";
+import NotFound from './not found/NotFound'
 
 export {
   Home,
@@ -18,4 +19,5 @@ export {
   OrderSummary,
   Profile,
   Signup,
+  NotFound
 };

@@ -9,7 +9,7 @@ const Login = () => {
     email: "",
     password: "",
   });
- 
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUser({
@@ -30,7 +30,7 @@ const Login = () => {
   };
   const guestHandler = async () => {
     try {
-      let guestUser={
+      let guestUser = {
         email: "mohammed@gmail.com",
         password: "password",
       };
@@ -49,25 +49,25 @@ const Login = () => {
           <h2 className="centered-text grey">Login</h2>
           <form action="post" className="login-form" onSubmit={submitHandler}>
             <label htmlFor="email">
-              Email address
-              <br />{" "}
+              <span>Email address</span>
               <input
                 id="email"
                 onChange={handleChange}
                 name="email"
                 type="email"
                 placeholder="abc@neog.com"
+                required
               />
             </label>
 
             <label htmlFor="password">
-              Password
-              <br />{" "}
+              <span>Password</span>
               <input
                 type="password"
                 name="password"
                 onChange={handleChange}
                 placeholder="*******"
+                required
               />
             </label>
 
@@ -76,11 +76,13 @@ const Login = () => {
                 <input id="remember-me" type="checkbox" /> Remember me
               </label>
               <span>
-                <a href="">Forgot Your Password?</a>
+                <a>Forgot Your Password?</a>
               </span>
             </div>
             <input type="submit" value="Login" className="btn btn-primary" />
-            <button  className="btn btn-secondary" onClick={guestHandler}>Login as Guest</button>
+            <button className="btn btn-secondary" onClick={guestHandler}>
+              Login as Guest
+            </button>
             <div>
               <p className="centered-text">
                 <Link to="/signup">
