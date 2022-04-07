@@ -173,6 +173,7 @@ export const updateAddressHandler = function (schema, request) {
         address.state = state;
         address.pincode = pincode;
         address.mobile = mobile;
+        address.area=area;
         address.updatedAt = formatDate();
       }
     });
