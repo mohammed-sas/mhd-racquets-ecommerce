@@ -1,7 +1,7 @@
 import classes from "./app.module.css";
 import { Routes, Route } from "react-router-dom";
 import Mockman from "mockman-js";
-import { Navbar } from "./components";
+import { Navbar,RequireAuth } from "./components";
 import {
   Home,
   Login,
@@ -12,7 +12,7 @@ import {
   OrderSummary,
   Profile,
   Signup,
-  NotFound
+  NotFound,
 } from "./pages";
 function App() {
   return (
@@ -22,14 +22,42 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route
+          path="/cart"
+          element={
+            <RequireAuth>
+              <Cart />
+            </RequireAuth>
+          }
+        />
         <Route path="/products-listing" element={<Products />} />
         <Route path="/mock-api" element={<Mockman />} />
-        <Route path="/wishlist" element={<Wishlist />} />
+        <Route
+          path="/wishlist"
+          element={
+            <RequireAuth>
+              <Wishlist />
+            </RequireAuth>
+          }
+        />
         <Route path="/product/:productId" element={<SingleProduct />} />
-        <Route path="/profile/*" element={<Profile />} />
-        <Route path="/order-summary" element={<OrderSummary />} />
-        <Route path="*" element={<NotFound/>}/>
+        <Route
+          path="/profile/*"
+          element={
+            <RequireAuth>
+              <Profile />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/order-summary"
+          element={
+            <RequireAuth>
+              <OrderSummary />
+            </RequireAuth>
+          }
+        />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

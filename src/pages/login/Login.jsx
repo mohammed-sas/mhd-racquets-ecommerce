@@ -20,10 +20,7 @@ const Login = () => {
   const submitHandler = async (e) => {
     try {
       e.preventDefault();
-      let status = await signin(user);
-      if (status) {
-        navigate(-1);
-      }
+      await signin(user);
     } catch (error) {
       console.log(error);
     }
