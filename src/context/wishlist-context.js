@@ -18,9 +18,10 @@ const WishlistProvider=({children})=>{
 
 const useWishlistAPI=()=>{
     const [wishlistState,wishlistDispatch] = useReducer(wishlistReducer,initialState);
-    let token = localStorage.getItem("token");
+   
     const addToWishlist=async (product)=>{
         try{
+            let token = localStorage.getItem("token");
             let response = await axios.post("/api/user/wishlist",{product},{headers:{
                 authorization:token
             }});
@@ -33,6 +34,7 @@ const useWishlistAPI=()=>{
     }
     const deleteFromWishlist=async (id)=>{
         try{
+            let token = localStorage.getItem("token");
             let response = await axios.delete(`/api/user/wishlist/${id}`,{headers:{
                 authorization:token
             }});

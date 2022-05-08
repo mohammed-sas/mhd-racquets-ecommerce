@@ -16,10 +16,10 @@ let cartInitialState={
 
 const useCartProvider=()=>{
     const [cartState,cartDispatch] = useReducer(cartReducer,cartInitialState);
-    let token = localStorage.getItem("token");
+    
     const addToCart=async (product)=>{
             try{
-           
+                let token = localStorage.getItem("token");              
                 let response = await axios.post('/api/user/cart',{product},{headers:{
                     authorization : token
                 }});
@@ -31,6 +31,7 @@ const useCartProvider=()=>{
     }
     const getCart= async ()=>{
         try{
+            let token = localStorage.getItem("token"); 
             let response = await axios.get('/api/user/cart',{headers:{
                 authorization : token
             }})
@@ -42,6 +43,7 @@ const useCartProvider=()=>{
     const removeFromCart=async (productId)=>{
         
         try{
+            let token = localStorage.getItem("token"); 
             let response = await axios.delete(`/api/user/cart/${productId}`,{headers:{
                 authorization : token
             }});
@@ -54,6 +56,7 @@ const useCartProvider=()=>{
     const qtyIncDec=async (action,productId)=>{
         
         try{
+            let token = localStorage.getItem("token"); 
             let response = await axios.post(`/api/user/cart/${productId}`,{action},{headers:{
                 authorization : token
             }});
@@ -65,6 +68,7 @@ const useCartProvider=()=>{
 
     const deleteCart=async()=>{
         try{
+            let token = localStorage.getItem("token"); 
             let response = await axios.delete('/api/user/cart',{headers:{
                 authorization:token
             }})
