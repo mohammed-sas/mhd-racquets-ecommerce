@@ -36,7 +36,7 @@ const Login = () => {
       };
       let status= await signin(guestUser);
        if(status===200)
-      navigate(location?.state?.from?.pathname || -1, { replace: true });
+      navigate(location?.state?.from?.pathname || "/", { replace: true });
     } catch (error) {
       console.log(error);
     }
