@@ -24,6 +24,7 @@ const filterReducer = (state, { type, payload }) => {
           ],
           [`show${payload.category}`]: true,
           featuredCatgories: [],
+          currentPageNumber:0,
         };
       } else {
         return {
@@ -33,12 +34,14 @@ const filterReducer = (state, { type, payload }) => {
           ),
           [`show${payload.category}`]: false,
           featuredCatgories: [],
+          currentPageNumber:0,
         };
       }
     case "PRICE_RANGE":
       return {
         ...state,
         maxPrice: Number(payload),
+        currentPageNumber:0,
       };
 
     case "HIGH_TO_LOW":
@@ -46,19 +49,28 @@ const filterReducer = (state, { type, payload }) => {
         ...state,
         highToLow: true,
         lowToHigh: false,
+        currentPageNumber:0,
       };
     case "LOW_TO_HIGH":
       return {
         ...state,
         lowToHigh: true,
         highToLow: false,
+        currentPageNumber:0,
       };
 
     case "RATING":
       return {
         ...state,
         rating: payload,
+        currentPageNumber:0,
+
       };
+    case "UPDATE_PAGE":
+      return{
+        ...state,
+        currentPageNumber:payload
+      }
 
     case "CLEAR_FILTER":
       return {

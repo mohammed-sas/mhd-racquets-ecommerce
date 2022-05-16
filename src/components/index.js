@@ -6,6 +6,7 @@ import MiniProductCard from "./mini product card/MiniProductCard";
 import Navbar from "./Navbar/Navbar";
 import Rating from "./rating/Rating";
 import Search from "./search/Search";
+import Tabs from './tabs/Tabs';
 import  {RequireAuth} from './require auth/RequireAuth';
 export {
   InfoAlert,
@@ -16,5 +17,6 @@ export {
   Navbar,
   Rating,
   Search,
-  RequireAuth
+  RequireAuth,
+  Tabs
 };

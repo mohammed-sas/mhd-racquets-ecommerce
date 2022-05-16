@@ -27,7 +27,7 @@ const SingleProduct = () => {
       }
     };
     fetchProduct();
-  }, []);
+  }, [productId]);
 
   const wishlistHandler = async (id) => {
     try {

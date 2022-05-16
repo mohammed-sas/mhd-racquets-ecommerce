@@ -18,6 +18,7 @@ const FilterProvider = ({ children }) => {
     maxPrice: 14000,
     featuredCatgories: [],
     rating: 0,
+    currentPageNumber:0
   });
 
   useEffect(() => {

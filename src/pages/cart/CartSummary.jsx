@@ -50,6 +50,7 @@ const CartSummary = ({ cartState, orderAddress, discount }) => {
             delivery: orderAddress,
           };
           deleteCart();
+          cartDispatch({type:"ORDER_SUCCESS"})
         },
         prefill: {
           name: `${orderAddress.name}`,
@@ -61,6 +62,7 @@ const CartSummary = ({ cartState, orderAddress, discount }) => {
       };
       const paymentObject = new window.Razorpay(options);
       paymentObject.open();
+
     } catch (error) {
       console.log(error);
     }
