@@ -10,6 +10,7 @@ const cartReducer = (state,action)=>{
                 totalPrice:action.payload.reduce((acc,curr)=>acc+parseInt(curr.price.replace(/,/g,''))*curr.qty,0),
                 totalItems:action.payload.reduce((acc,curr)=>acc+curr.qty,0),
                 discount:0,
+                orderSuccess:false,
             };
         case "GET_CART":
             return state;
@@ -29,11 +30,17 @@ const cartReducer = (state,action)=>{
                 totalPrice:0,
                 totalItems:0,
                 discount:0,
+                orderSuccess:false,
             }
         case "DISCOUNT":
             return{
                 ...state,
                 discount:Number(action.payload)
+            }
+        case "ORDER_SUCCESS":
+            return{
+                ...state,
+                orderSuccess:true,
             }
         
 

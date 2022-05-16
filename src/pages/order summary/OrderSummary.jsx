@@ -1,8 +1,8 @@
 import classes from "./orderSummary.module.css";
 import CartSummary from "../cart/CartSummary";
-import { useCart,useAddress } from "../../context";
+import { useCart, useAddress } from "../../context";
 import { useToggle } from "../../hooks/useToggle";
-import {MiniAddressCard,MiniProductCard} from "../../components";
+import { MiniAddressCard, MiniProductCard } from "../../components";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -12,7 +12,7 @@ const OrderSummary = () => {
   const [showAddress, setShowAddress] = useToggle(false);
   const [selectedAddress, setSelectedAddress] = useState(null);
   const navigate = useNavigate();
-  return (
+  return cartState.orderSuccess === false ? (
     <main className={classes["summary-container"]}>
       <div className={classes["container"]}>
         <div className={classes["address-container"]}>
@@ -23,7 +23,14 @@ const OrderSummary = () => {
                 address={selectedAddress}
                 showInput={!!selectedAddress}
               />
-            ) : <button className="btn btn-primary" onClick={()=>navigate("/profile/address")}>Add Address</button>}
+            ) : (
+              <button
+                className="btn btn-primary"
+                onClick={() => navigate("/profile/address")}
+              >
+                Add Address
+              </button>
+            )}
           </div>
           <div className={classes["address-header"]}>
             <h4>Select Address</h4>
@@ -64,6 +71,12 @@ const OrderSummary = () => {
       </div>
       <CartSummary cartState={cartState} orderAddress={selectedAddress} />
     </main>
+  ) : (
+    <div>
+      <h1 className="centered-text">
+        Congrats! Order has been placed Successfully!!!
+      </h1>
+    </div>
   );
 };
 
