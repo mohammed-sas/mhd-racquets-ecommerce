@@ -1,0 +1,8 @@
+.page-tab{
+    display: inline-block;
+    padding: 1rem;
+    background: var(--purple-600);
+    color: var(--white);
+    cursor: pointer;
+    border-radius: 1rem;
+}

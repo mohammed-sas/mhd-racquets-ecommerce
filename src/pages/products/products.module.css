@@ -31,10 +31,6 @@ main {
   grid-area: main;
   overflow-y: scroll;
   height: 100%;
-  display: flex;
-  justify-content: space-around;
-  flex-flow: row wrap;
-  gap: 2rem;
   padding: 1rem;
 }
 i {
@@ -65,6 +61,18 @@ i {
 }
 .product-btn {
   margin: 5px 0;
+}
+
+.product-lists{
+  display: flex;
+  flex-flow: row wrap;
+  gap: 2rem;
+}
+.page-tabs{
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  justify-content: center;
 }
 
 .loader {
