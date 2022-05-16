@@ -1,8 +1,14 @@
 .page-tab{
     display: inline-block;
     padding: 1rem;
-    background: var(--purple-600);
-    color: var(--white);
+    background: var(--white);
+    color: var(--purple-600);
     cursor: pointer;
     border-radius: 1rem;
+    box-shadow: 1px 2px 2px rgba(0,0,0,0.5);
+}
+
+.page-tab.active{
+    background: var(--purple-600);
+    color:var(--white);
 }

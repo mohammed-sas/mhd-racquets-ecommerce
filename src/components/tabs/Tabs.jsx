@@ -1,10 +1,10 @@
 
 import { useFilter } from '../../context';
 import classes from './tabs.module.css';
-const Tabs = ({pageNum,setPageNumber}) => {
-    const {filterDispatch} = useFilter();
+const Tabs = ({pageNum}) => {
+    const {filterDispatch,state} = useFilter();
     return (
-        <span className={classes['page-tab']} onClick={()=>filterDispatch({type:"UPDATE_PAGE",payload:pageNum-1})}>
+        <span className={`${classes['page-tab']} ${state.currentPageNumber=== pageNum-1 ? classes["active"]: ""}`} onClick={()=>filterDispatch({type:"UPDATE_PAGE",payload:pageNum-1})}>
             {pageNum}
         </span>
     )
