@@ -25,7 +25,7 @@ A all-in-one store where you could find accessories related to Badmintion Sport.
 12.Payment Integration  
 13.Coupon  
 14.Single product page  
-15.Search Products
+15.Search Products  
 16.Pagination
 
 ## Demo
