@@ -63,6 +63,9 @@ body {
   color:var(--white);
   cursor: pointer;
 }
+.btn-qty:disabled{
+  cursor:not-allowed;
+}
 #qty-input {
   width: 2.5rem;
   text-align: center;

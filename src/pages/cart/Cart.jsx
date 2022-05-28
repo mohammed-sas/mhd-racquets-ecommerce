@@ -92,6 +92,7 @@ const Cart = () => {
                           Quantity:
                           <button
                             className={classes["btn-qty"]}
+                            disabled={product.qty === 1 ? true : false}
                             onClick={() =>
                               qtyHandler(
                                 { type: "decrement" },
