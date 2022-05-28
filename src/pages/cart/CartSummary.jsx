@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import classes from "./cart.module.css";
 import logo from "../../assets/ecomm-logo.png";
-import { useCart } from "../../context";
+import { useAuth, useCart } from "../../context";
 import { InfoAlert } from "../../components";
 import { useToggle } from "../../hooks/useToggle";
 import { useState } from "react";
@@ -11,6 +11,7 @@ const CartSummary = ({ cartState, orderAddress, discount }) => {
   const { deleteCart, cartDispatch } = useCart();
   const [showInfo, setShowInfo] = useToggle(false);
   const [alertMessage, setAlertMessage] = useState("");
+  const {currentUser} = useAuth();
 
   const loadScript = async (url) => {
     return new Promise((resolve) => {
@@ -55,6 +56,7 @@ const CartSummary = ({ cartState, orderAddress, discount }) => {
         prefill: {
           name: `${orderAddress.name}`,
           contact: `${orderAddress.mobile}`,
+          email:`${currentUser.email}`,
         },
         theme: {
           color: "#7e22ce",
