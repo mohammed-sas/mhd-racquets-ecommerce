@@ -1,11 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import classes from "../Navbar/navbar.module.css";
-const Search = ({ list, setSearchResult }) => {
+const Search = ({ list, setSearchResult, setSearchString }) => {
   const navigate = useNavigate();
   const clickHandler = (id) => {
     navigate(`/product/${id}`);
     setSearchResult([]);
+    setSearchString("");
   };
   return (
     <div className={classes["search-list"]}>
