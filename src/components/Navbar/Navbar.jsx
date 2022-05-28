@@ -14,7 +14,9 @@ const Navbar = () => {
   const [searchResult, setSearchResult] = useState([]);
   const [showSidebar, setShowSidebar] = useState(false);
   const [hideSearchRes,setHideSearch]=useState(false);
+  const [searchString,setSearchString] = useState("");
   const searchHandler = (e) => {
+    setSearchString(e.target.value);
     let inputVal = e.target.value.toLowerCase().trim();
     setHideSearch(false);
     let inputLen = inputVal.length;
@@ -56,9 +58,10 @@ const Navbar = () => {
           type="text"
           placeholder="Search products,brands and more"
           onChange={searchHandler}
+          value={searchString}
         />
 
-       {!hideSearchRes && <Search list={searchResult} setSearchResult={setSearchResult}/>}
+       {!hideSearchRes && <Search list={searchResult} setSearchString={setSearchString} setSearchResult={setSearchResult}/>}
       </div>
       <div
         className={`nav-links ${classes["nav-links"]} ${
