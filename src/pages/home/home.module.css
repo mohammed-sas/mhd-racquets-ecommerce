@@ -26,6 +26,7 @@ img{
     gap: 1rem;
     flex-direction: column;
     flex-wrap: wrap;
+    margin:2rem 0;
 }
 .featured-lists{
     display: flex;
