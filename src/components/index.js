@@ -8,6 +8,7 @@ import Rating from "./rating/Rating";
 import Search from "./search/Search";
 import Tabs from './tabs/Tabs';
 import  {RequireAuth} from './require auth/RequireAuth';
+import ErrorBoundary from "./error boundary/ErrorBoundary";
 export {
   InfoAlert,
   SuccessAlert,
@@ -18,5 +19,6 @@ export {
   Rating,
   Search,
   RequireAuth,
-  Tabs
+  Tabs,
+  ErrorBoundary
 };
