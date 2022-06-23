@@ -1,7 +1,7 @@
 import classes from "./app.module.css";
 import { Routes, Route } from "react-router-dom";
 import Mockman from "mockman-js";
-import { Navbar,RequireAuth } from "./components";
+import { Navbar, RequireAuth } from "./components";
 import {
   Home,
   Login,
@@ -14,12 +14,12 @@ import {
   Signup,
   NotFound,
 } from "./pages";
-import {Suspense} from 'react'
+import { Suspense } from "react";
 function App() {
   return (
     <div className={classes["app-container"]}>
       <Navbar />
-      <Suspense fallback={<h1>Loading...</h1>}>
+      <Suspense fallback={<span class="loader"></span>}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
