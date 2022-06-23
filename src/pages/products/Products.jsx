@@ -8,13 +8,14 @@ import {
 } from "../../utils/util";
 import classes from "./products.module.css";
 import { useFilter, useAuth, useCart, useWishlist } from "../../context";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { SuccessAlert, InfoAlert } from "../../components";
 import { useState } from "react";
 
 const Products = () => {
   const { state } = useFilter();
   const navigate = useNavigate();
+  const location = useLocation();
   const { currentUser } = useAuth();
   const { addToCart, cartState } = useCart();
   const [apiCalled, setApiCalled] = useState(false);
@@ -31,16 +32,18 @@ const Products = () => {
   filteredItems = getMaxPrice(filteredItems, maxPrice);
   filteredItems = getRatings(filteredItems, rating);
   const pages = Math.floor(filteredItems.length / itemsPerPage);
-  let startIndex = state.currentPageNumber*itemsPerPage;
-  let endIndex = startIndex+itemsPerPage;
-  filteredItems=filteredItems.slice(startIndex,endIndex);
-
-  
+  let startIndex = state.currentPageNumber * itemsPerPage;
+  let endIndex = startIndex + itemsPerPage;
+  filteredItems = filteredItems.slice(startIndex, endIndex);
 
   const addToCartHandler = async (product) => {
     try {
       if (!currentUser) {
-        navigate("/login");
+        navigate("/login", {
+          state: {
+            from: location,
+          },
+        });
       } else {
         let result = isProductExist(product._id);
 
@@ -68,6 +71,14 @@ const Products = () => {
 
   const wishlistHandler = async (product) => {
     try {
+      if (!currentUser) {
+        navigate("/login", {
+          state: {
+            from: location,
+          },
+        });
+        return;
+      }
       let isExist = isProductWishlisted(product);
       setApiCalled(true);
       setProcessing(true);
@@ -95,7 +106,7 @@ const Products = () => {
     return result ? "wishlist-active" : "";
   };
 
-  const viewDetailHandler = (id) => { 
+  const viewDetailHandler = (id) => {
     navigate(`/product/${id}`);
   };
   return (
@@ -161,11 +172,11 @@ const Products = () => {
         {apiCalled && !processing && <SuccessAlert message={alertMessage} />}
         <div className={classes["page-tabs"]}>
           {[...Array(pages)].map((val, index) => {
-            return <Tabs key={index} pageNum={index + 1}/>;
+            return <Tabs key={index} pageNum={index + 1} />;
           })}
         </div>
       </main>
-     
+
       <div
         className={classes["minimised-filter"]}
         onClick={() => setShowFilter(!showFilter)}

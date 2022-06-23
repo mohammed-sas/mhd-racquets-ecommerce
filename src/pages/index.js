@@ -1,13 +1,15 @@
-import Home from "./home/Home";
-import Login from "./login/Login";
-import Cart from "./cart/Cart";
-import Products from "./products/Products";
-import Wishlist from "./wishlist/Wishlist";
-import SingleProduct from "./single product/SingleProduct";
-import OrderSummary from "./order summary/OrderSummary";
-import Profile from "./profile/Profile";
-import Signup from "./signup/Signup";
-import NotFound from './not found/NotFound'
+import {lazy} from 'react'
+
+const Home =lazy(()=>import("./home/Home"));
+const Login =lazy(()=>import("./login/Login"));
+const Cart =lazy(()=>import("./cart/Cart"));
+const Products =lazy(()=>import("./products/Products"));
+const Wishlist =lazy(()=>import("./wishlist/Wishlist"));
+const SingleProduct =lazy(()=>import("./single product/SingleProduct"));
+const OrderSummary =lazy(()=>import("./order summary/OrderSummary"));
+const Profile =lazy(()=>import("./profile/Profile"));
+const Signup =lazy(()=>import("./signup/Signup"));
+const NotFound =lazy(()=>import('./not found/NotFound'));
 
 export {
   Home,
