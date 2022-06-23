@@ -14,51 +14,54 @@ import {
   Signup,
   NotFound,
 } from "./pages";
+import {Suspense} from 'react'
 function App() {
   return (
     <div className={classes["app-container"]}>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route
-          path="/cart"
-          element={
-            <RequireAuth>
-              <Cart />
-            </RequireAuth>
-          }
-        />
-        <Route path="/products-listing" element={<Products />} />
-        <Route path="/mock-api" element={<Mockman />} />
-        <Route
-          path="/wishlist"
-          element={
-            <RequireAuth>
-              <Wishlist />
-            </RequireAuth>
-          }
-        />
-        <Route path="/product/:productId" element={<SingleProduct />} />
-        <Route
-          path="/profile/*"
-          element={
-            <RequireAuth>
-              <Profile />
-            </RequireAuth>
-          }
-        />
-        <Route
-          path="/order-summary"
-          element={
-            <RequireAuth>
-              <OrderSummary />
-            </RequireAuth>
-          }
-        />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <Suspense fallback={<h1>Loading...</h1>}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/cart"
+            element={
+              <RequireAuth>
+                <Cart />
+              </RequireAuth>
+            }
+          />
+          <Route path="/products-listing" element={<Products />} />
+          <Route path="/mock-api" element={<Mockman />} />
+          <Route
+            path="/wishlist"
+            element={
+              <RequireAuth>
+                <Wishlist />
+              </RequireAuth>
+            }
+          />
+          <Route path="/product/:productId" element={<SingleProduct />} />
+          <Route
+            path="/profile/*"
+            element={
+              <RequireAuth>
+                <Profile />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/order-summary"
+            element={
+              <RequireAuth>
+                <OrderSummary />
+              </RequireAuth>
+            }
+          />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
     </div>
   );
 }
